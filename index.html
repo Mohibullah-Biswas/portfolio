@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md Mohibullah Biswas - Visual Storyteller & Tech Specialist</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Minimalist Aesthetic Base Style */
+        :root {
+            --bg-main: #EFECE6; /* Subtle warm grey from 2nd image */
+            --bg-card: #E4E0D7;
+            --text-dark: #121212;
+            --text-muted: #555555;
+            --accent-green: #CBEA7B; /* Mint/Lime accent from 1st image */
+            --accent-dark: #1E1E1E;
+            --border-color: rgba(0, 0, 0, 0.12);
+            --font-heading: 'Syne', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header / Navbar */
+        header {
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        /* Hero Section (Image 2 style with Image 1 element inspiration) */
+        .hero {
+            padding: 80px 0 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 280px;
+            gap: 40px;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-left h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            line-height: 1.05;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero-left p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--accent-dark);
+            color: #ffffff;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background-color: #000;
+        }
+
+        .hero-center {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .profile-img-container {
+            width: 100%;
+            max-width: 360px;
+            height: 460px;
+            border-radius: 200px 200px 0 0; /* Arch shape like Image 2 */
+            overflow: hidden;
+            background-color: #D6D1C7;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.5s;
+        }
+
+        .profile-img-container:hover img {
+            filter: grayscale(0%);
+        }
+
+        .hero-right-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .stat-card {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .stat-card .number {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .stat-card .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 6px;
+        }
+
+        /* Services Grid (4 Column Layout from Image 2) */
+        .services-bar {
+            padding: 60px 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .service-box h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .service-box p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Trusted By / Experience Section */
+        .trusted-by {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .trusted-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+        }
+
+        .trusted-header h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            text-transform: uppercase;
+        }
+
+        .trusted-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .client-card {
+            background-color: var(--bg-card);
+            padding: 24px 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .client-card span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-dark);
+            border-radius: 50%;
+        }
+
+        /* About Section (High Impact Text from Image 2) */
+        .about-section {
+            padding: 100px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .about-title h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+        }
+
+        .about-content p.highlight {
+            color: var(--text-muted);
+        }
+
+        /* Filterable Portfolio Section */
+        .portfolio-section {
+            padding: 100px 0;
+        }
+
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .portfolio-header h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            text-transform: uppercase;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-dark);
+            color: #ffffff;
+            border-color: var(--accent-dark);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .portfolio-info {
+            padding: 24px;
+        }
+
+        .portfolio-info span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .portfolio-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin-top: 6px;
+        }
+
+        /* Contact & Footer */
+        .contact-section {
+            padding: 100px 0;
+            background-color: var(--accent-dark);
+            color: #ffffff;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .contact-section p {
+            color: #aaaaaa;
+            max-width: 600px;
+            margin: 0 auto 36px;
+            font-size: 1.1rem;
+        }
+
+        .contact-btn {
+            background-color: var(--accent-green);
+            color: var(--accent-dark);
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-left p {
+                margin: 0 auto 32px;
+            }
+            .hero-center {
+                order: -1;
+            }
+            .services-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .trusted-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-section {
+                grid-template-columns: 1fr;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .services-bar {
+                grid-template-columns: 1fr;
+            }
+            .trusted-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none; /* Can be expanded to mobile menu */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">MOHIBULLAH.</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section (Inspired by Image 2 Layout) -->
+        <section class="hero">
+            <div class="hero-left">
+                <h1>Visual Editor & Content Strategist</h1>
+                <p>Transforming raw footage into high-retention video content, striking thumbnails, and scalable social media growth.</p>
+                <a href="#contact" class="btn-primary">GET IN TOUCH &rarr;</a>
+            </div>
+
+            <div class="hero-center">
+                <div class="profile-img-container">
+                    <!-- Replace image link below with your picture -->
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" alt="Md Mohibullah Biswas">
+                </div>
+            </div>
+
+            <div class="hero-right-stats">
+                <div class="stat-card">
+                    <div class="number">3+</div>
+                    <div class="label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">150+</div>
+                    <div class="label">Videos Delivered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">100%</div>
+                    <div class="label">Client Satisfaction</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">5+</div>
+                    <div class="label">Global Communities</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section (4 Columns) -->
+        <section class="services-bar" id="services">
+            <div class="service-box">
+                <h3>Video Post-Production</h3>
+                <p>High-retention YouTube editing, Shorts/Reels, sound design, and color grading.</p>
+            </div>
+            <div class="service-box">
+                <h3>Graphic Design</h3>
+                <p>High CTR thumbnails, banner designs, and complete brand identity graphics.</p>
+            </div>
+            <div class="service-box">
+                <h3>Channel Management</h3>
+                <p>YouTube SEO, content strategy, Facebook distribution, and channel analytics.</p>
+            </div>
+            <div class="service-box">
+                <h3>AI & Tech Integration</h3>
+                <p>Python script automation, web presentation, and AI-driven creative workflows.</p>
+            </div>
+        </section>
+
+        <!-- Trusted By / Communities Section -->
+        <section class="trusted-by">
+            <div class="trusted-header">
+                <h2>Worked With & Communities</h2>
+                <p style="color: var(--text-muted);">Collaborating with gaming, educational, and international partners.</p>
+            </div>
+            <div class="trusted-grid">
+                <div class="client-card"><span></span> Efootball Council of Bangladesh</div>
+                <div class="client-card"><span></span> ZIM FF</div>
+                <div class="client-card"><span></span> Sohoj English Academy</div>
+                <div class="client-card"><span></span> Md Imran Hossain (Australia)</div>
+                <div class="client-card"><span></span> River Bolesswar eFC</div>
+                <div class="client-card"><span></span> Global Creators</div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section class="about-section" id="about">
+            <div class="about-title">
+                <h2>Crafting Engaged Audiences Through Storytelling</h2>
+            </div>
+            <div class="about-content">
+                <p>Hey, I'm <strong>Md Mohibullah Biswas</strong>. I am a Video Editor, Graphic Designer, Content Strategist, and Educator.</p>
+                <p class="highlight">With hands-on expertise in Python, HTML, and AI workflows, I combine tech efficiency with creative storytelling. My teaching background enables me to present complex ideas simply, while my social media management experience ensures every video is optimized for retention and channel growth.</p>
+            </div>
+        </section>
+
+        <!-- Filterable Video & Graphic Portfolio -->
+        <section class="portfolio-section" id="portfolio">
+            <div class="portfolio-header">
+                <h2>Featured Works</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterPortfolio('all')">All</button>
+                    <button class="filter-btn" onclick="filterPortfolio('youtube')">YouTube Long</button>
+                    <button class="filter-btn" onclick="filterPortfolio('shorts')">Shorts / Reels</button>
+                    <button class="filter-btn" onclick="filterPortfolio('graphics')">Graphics & Thumbnails</button>
+                </div>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Video Item 1 (YouTube) -->
+                <div class="portfolio-item youtube">
+                    <div class="video-container">
+                        <!-- Replace src with your YouTube embed link -->
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allowfullscreen></iframe>
+                    </div>
+                    <div class="portfolio-info">
+                        <span>YouTube Long-Form</span>
+                        <h3>Esports Highlights & Documentary Editing</h3>
+                    </div>
+                </div>
+
+                <!-- Video Item 2 (Shorts) -->
+                <div class="portfolio-item shorts">
+                    <div class="video-container">
+                        <!-- Replace src with your Shorts embed link -->
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Shorts video player" allowfullscreen></iframe>
+                    </div>
+                    <div class="portfolio-info">
+                        <span>Shorts / Vertical Video</span>
+                        <h3>High-Retention Reels & Tech Short</h3>
+                    </div>
+                </div>
+
+                <!-- Graphic Item (Thumbnail Example) -->
+                <div class="portfolio-item graphics">
+                    <div style="height: 240px; overflow: hidden; background: #ccc;">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" alt="Thumbnail Design" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <div class="portfolio-info">
+                        <span>Graphic Design</span>
+                        <h3>High-CTR Gaming & Tech Thumbnails</h3>
+                    </div>
+                </div>
+
+                <!-- Video Item 3 (YouTube) -->
+                <div class="portfolio-item youtube">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allowfullscreen></iframe>
+                    </div>
+                    <div class="portfolio-info">
+                        <span>Educational Content</span>
+                        <h3>English Learning Tutorial Series</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action / Contact -->
+        <section class="contact-section" id="contact">
+            <h2>Let's Work Together</h2>
+            <p>Need high-quality video edits, CTR-boosting thumbnails, or full channel management? Let's discuss your project.</p>
+            <a href="mailto:your-email@gmail.com" class="contact-btn">Send Me an Email &rarr;</a>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Md Mohibullah Biswas. All rights reserved.</p>
+            <p>Built for GitHub Pages</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript for Dynamic Filtering -->
+    <script>
+        function filterPortfolio(category) {
+            // Update active button
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter items
+            const items = document.querySelectorAll('.portfolio-item');
+            items.forEach(item => {
+                if (category === 'all') {
+                    item.style.display = 'block';
+                } else {
+                    if (item.classList.contains(category)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
