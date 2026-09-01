@@ -37,7 +37,6 @@
             perspective: 1000px;
         }
 
-        /* Background Animated Glowing Orbs */
         .glow-orb {
             position: absolute;
             width: 450px;
@@ -52,7 +51,7 @@
         .orb-1 { top: -100px; left: -100px; }
         .orb-2 { top: 45%; right: -100px; background: radial-gradient(circle, rgba(127,0,255,0.12) 0%, rgba(0,0,0,0) 70%); }
 
-        /* 1. Ultra-Modern Floating Pill Header */
+        /* Floating Pill Header */
         header {
             position: fixed;
             top: 20px;
@@ -120,7 +119,7 @@
             box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
         }
 
-        /* 2. Hero Section with Portrait Image Frame */
+        /* Hero Section */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -178,8 +177,6 @@
             border: 1px solid var(--card-border);
             background: var(--card-bg);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            transform-style: preserve-3d;
-            transition: transform 0.3s ease;
         }
 
         .hero-img-box img {
@@ -189,7 +186,7 @@
             filter: grayscale(20%) contrast(110%);
         }
 
-        /* 3. Common Section Layout */
+        /* Section Container */
         .section-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -212,6 +209,46 @@
             font-weight: 700;
             margin-bottom: 48px;
             letter-spacing: -1px;
+        }
+
+        /* Stats Section (Experience, Projects, Satisfaction) */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 242, 254, 0.15);
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         /* Capabilities Grid */
@@ -254,7 +291,7 @@
             line-height: 1.5;
         }
 
-        /* 4. Trusted Partners Section */
+        /* Work With / Partners Section */
         .logo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -285,7 +322,7 @@
             transform: scale(1.02);
         }
 
-        /* 5. Statement Section */
+        /* Statement Box */
         .statement-box {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -309,7 +346,7 @@
             line-height: 1.6;
         }
 
-        /* 6. Services Stack */
+        /* Services Stack */
         .services-stack {
             display: flex;
             flex-direction: column;
@@ -340,7 +377,7 @@
             color: var(--accent-cyan);
         }
 
-        /* 7. Portfolio Showcase */
+        /* Portfolio Showcase */
         .portfolio-card {
             width: 100%;
             height: 520px;
@@ -357,7 +394,7 @@
             border: 0;
         }
 
-        /* 8. Client Testimonials */
+        /* Client Satisfaction & Reviews */
         .testimonial-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -389,7 +426,7 @@
             color: var(--text-muted);
         }
 
-        /* 9. FAQ Accordion */
+        /* FAQ Accordion */
         .faq-item {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -422,7 +459,7 @@
             margin-top: 14px;
         }
 
-        /* 10. Contact Form */
+        /* Contact Form */
         .contact-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -472,20 +509,20 @@
     <div class="glow-orb orb-1"></div>
     <div class="glow-orb orb-2"></div>
 
-    <!-- 1. Floating Header -->
+    <!-- 1. Floating Pill Header -->
     <header>
         <div class="logo">MOHIBULLAH.</div>
         <ul class="nav-links">
             <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#stats" class="nav-link">Experience</a></li>
             <li><a href="#services" class="nav-link">Services</a></li>
             <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-            <li><a href="#faq" class="nav-link">FAQ</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
         <a href="#contact" class="btn-header">Let's Talk</a>
     </header>
 
-    <!-- 2. Hero Section (With Portrait Image) -->
+    <!-- 2. Hero Section -->
     <section class="hero" id="about">
         <div class="hero-grid">
             <div>
@@ -502,7 +539,31 @@
         </div>
     </section>
 
-    <!-- 3. Key Capabilities -->
+    <!-- 3. Key Achievements / Stats Counter (Experience, Project Delivery, Satisfaction) -->
+    <section class="section-container" id="stats">
+        <span class="section-tag">Track Record</span>
+        <h2 class="section-heading">Proven Results & Impact</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">3+</div>
+                <div class="stat-label">Years of Experience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">99%</div>
+                <div class="stat-label">Client Satisfaction Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">10M+</div>
+                <div class="stat-label">Total Views Generated</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Key Capabilities -->
     <section class="section-container">
         <span class="section-tag">Capabilities</span>
         <h2 class="section-heading">High-Impact Solutions</h2>
@@ -530,9 +591,9 @@
         </div>
     </section>
 
-    <!-- 4. Trusted Industry Partners -->
+    <!-- 5. Work With Section (Trusted Industry Partners) -->
     <section class="section-container">
-        <span class="section-tag">Network</span>
+        <span class="section-tag">Worked With</span>
         <h2 class="section-heading">Trusted Industry Partners</h2>
         <div class="logo-grid">
             <div class="partner-box"><i class="fa-solid fa-trophy"></i> Efootball Council BD</div>
@@ -542,7 +603,7 @@
         </div>
     </section>
 
-    <!-- 5. Big Statement Section -->
+    <!-- 6. Big Statement Section -->
     <section class="section-container">
         <div class="statement-box">
             <div class="statement-left">
@@ -554,7 +615,7 @@
         </div>
     </section>
 
-    <!-- 6. Services Section -->
+    <!-- 7. Services Section -->
     <section class="section-container" id="services">
         <span class="section-tag">Services</span>
         <h2 class="section-heading">What I Deliver</h2>
@@ -577,7 +638,7 @@
         </div>
     </section>
 
-    <!-- 7. Portfolio Showcase -->
+    <!-- 8. Portfolio Showcase -->
     <section class="section-container" id="portfolio">
         <span class="section-tag">Portfolio</span>
         <h2 class="section-heading">Featured Showcase</h2>
@@ -586,10 +647,10 @@
         </div>
     </section>
 
-    <!-- 8. Client Testimonials -->
+    <!-- 9. Client Satisfaction & Testimonials -->
     <section class="section-container">
-        <span class="section-tag">Reviews</span>
-        <h2 class="section-heading">Client Feedback</h2>
+        <span class="section-tag">Client Satisfaction</span>
+        <h2 class="section-heading">What Clients Say</h2>
         <div class="testimonial-grid">
             <div class="testimonial-card">
                 <p>"Mohibullah's video editing turned our content into high-retention masterpieces. Exceptional attention to visual pacing and sound design!"</p>
@@ -599,7 +660,7 @@
                 </div>
             </div>
             <div class="testimonial-card">
-                <p>"Top-tier esports graphics and video assets. Reliable, punctual, and knows exactly what the audience wants."</p>
+                <p>"Top-tier esports graphics and video assets. Reliable, punctual, and delivers 100% client satisfaction every time."</p>
                 <div class="client-info">
                     <h5>Efootball Council BD</h5>
                     <span>Esports Partner</span>
@@ -608,7 +669,7 @@
         </div>
     </section>
 
-    <!-- 9. FAQ Section -->
+    <!-- 10. FAQ Section -->
     <section class="section-container" id="faq">
         <span class="section-tag">FAQ</span>
         <h2 class="section-heading">Frequently Asked Questions</h2>
@@ -622,7 +683,7 @@
         </div>
     </section>
 
-    <!-- 10. Interactive Contact Form -->
+    <!-- 11. Interactive Contact Form -->
     <section class="section-container" id="contact">
         <div class="contact-wrapper">
             <div>
