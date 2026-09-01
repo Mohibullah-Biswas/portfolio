@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md Mohibullah Biswas | Digital Creator & Portfolio</title>
-    <!-- Modern Google Fonts & Icons -->
+    <title>Md Mohibullah Biswas | Dynamic 3D Portfolio</title>
+    <!-- Google Fonts & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- 3D & Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
         :root {
             --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --card-border: #e2e8f0;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(226, 232, 240, 0.8);
             --accent-primary: #2563eb;
             --accent-indigo: #4f46e5;
             --text-main: #0f172a;
             --text-muted: #64748b;
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            --shadow-lg: 0 20px 30px -10px rgba(0, 0, 0, 0.08);
         }
 
         * {
@@ -37,21 +41,18 @@
             overflow-x: hidden;
         }
 
-        /* Subtle Background Patterns */
-        .bg-grid {
-            position: absolute;
+        /* 3D WebGL Canvas Background */
+        #webgl-bg {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 100vw;
             height: 100vh;
-            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-            background-size: 32px 32px;
-            opacity: 0.4;
             z-index: -1;
             pointer-events: none;
         }
 
-        /* 1. Floating Pill Header (Light Mode) */
+        /* Floating Pill Header */
         header {
             position: fixed;
             top: 20px;
@@ -59,7 +60,7 @@
             transform: translateX(-50%);
             width: 90%;
             max-width: 1100px;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--card-border);
@@ -69,20 +70,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
         .logo {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.15rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
             color: var(--text-main);
         }
 
-        .logo span {
-            color: var(--accent-primary);
-        }
+        .logo span { color: var(--accent-primary); }
 
         .nav-links {
             display: flex;
@@ -95,12 +93,10 @@
             color: var(--text-muted);
             font-size: 0.88rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
         }
 
-        .nav-link:hover {
-            color: var(--accent-primary);
-        }
+        .nav-link:hover { color: var(--accent-primary); }
 
         .btn-header {
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-indigo));
@@ -110,7 +106,7 @@
             font-size: 0.85rem;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
             display: inline-block;
         }
@@ -120,7 +116,7 @@
             box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
         }
 
-        /* 2. Hero Section with Integrated Main Points Above the Fold */
+        /* Hero Section with 3D Card Setup */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -170,7 +166,7 @@
             margin-bottom: 28px;
         }
 
-        /* Key Metrics Grid - Integrated into Hero Screen */
+        /* Stats Grid */
         .hero-stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -183,13 +179,14 @@
             border: 1px solid var(--card-border);
             border-radius: 14px;
             padding: 16px 20px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .hero-stat-card:hover {
             border-color: var(--accent-primary);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
 
         .hero-stat-number {
@@ -203,7 +200,13 @@
             font-size: 0.8rem;
             font-weight: 600;
             color: var(--text-muted);
-            margin-top: 2px;
+        }
+
+        /* 3D Tilt Wrapper */
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.1s ease-out;
         }
 
         .hero-img-box {
@@ -211,7 +214,7 @@
             border-radius: 24px;
             overflow: hidden;
             border: 1px solid var(--card-border);
-            background: var(--card-bg);
+            background: #ffffff;
             box-shadow: var(--shadow-lg);
         }
 
@@ -222,7 +225,7 @@
             object-fit: cover;
         }
 
-        /* 3. Common Section Layout */
+        /* Layout Sections */
         .section-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -246,10 +249,9 @@
             font-weight: 700;
             margin-bottom: 40px;
             letter-spacing: -1px;
-            color: var(--text-main);
         }
 
-        /* Capabilities Grid */
+        /* Glass Cards */
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -261,13 +263,13 @@
             border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 30px 24px;
-            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
             transition: all 0.3s ease;
         }
 
         .glass-card:hover {
             border-color: var(--accent-primary);
-            transform: translateY(-4px);
             box-shadow: var(--shadow-lg);
         }
 
@@ -277,19 +279,7 @@
             margin-bottom: 18px;
         }
 
-        .glass-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .glass-card p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        /* 4. Global Partners Section */
+        /* Partners Grid */
         .logo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -304,12 +294,11 @@
             text-align: center;
             font-weight: 600;
             font-size: 0.95rem;
-            color: var(--text-main);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(8px);
             transition: all 0.3s ease;
         }
 
@@ -318,41 +307,23 @@
         .partner-box:hover {
             border-color: var(--accent-primary);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
         }
 
-        /* 5. Statement Section */
+        /* Statement Box */
         .statement-box {
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid var(--card-border);
             border-radius: 24px;
             padding: 50px 40px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            align-items: center;
-            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-lg);
         }
 
-        .statement-left h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.1rem;
-            line-height: 1.25;
-            color: var(--text-main);
-        }
-
-        .statement-right p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        /* 6. Services Stack */
-        .services-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+        /* Services Stack */
+        .services-stack { display: flex; flex-direction: column; gap: 16px; }
 
         .service-row {
             background: var(--card-bg);
@@ -362,13 +333,13 @@
             display: grid;
             grid-template-columns: 80px 1fr 2fr;
             align-items: center;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .service-row:hover {
             border-color: var(--accent-primary);
-            transform: translateX(4px);
+            transform: translateX(6px);
         }
 
         .service-num {
@@ -378,7 +349,7 @@
             color: var(--accent-primary);
         }
 
-        /* 7. Portfolio Showcase */
+        /* Portfolio Card */
         .portfolio-card {
             width: 100%;
             height: 500px;
@@ -389,46 +360,20 @@
             box-shadow: var(--shadow-lg);
         }
 
-        .portfolio-card iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
+        .portfolio-card iframe { width: 100%; height: 100%; border: 0; }
 
-        /* 8. Client Testimonials */
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
+        /* Testimonials */
+        .testimonial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
         .testimonial-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 32px;
-            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(8px);
         }
 
-        .testimonial-card p {
-            color: var(--text-main);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .client-info h5 {
-            font-size: 0.95rem;
-            font-weight: 700;
-        }
-
-        .client-info span {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* 9. FAQ Accordion */
+        /* FAQ Accordion */
         .faq-item {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -436,17 +381,10 @@
             margin-bottom: 12px;
             padding: 20px 24px;
             cursor: pointer;
-            box-shadow: var(--shadow-sm);
             transition: all 0.3s ease;
         }
 
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-            font-size: 0.98rem;
-        }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
 
         .faq-answer {
             max-height: 0;
@@ -454,23 +392,20 @@
             transition: max-height 0.3s ease, margin-top 0.3s ease;
             color: var(--text-muted);
             font-size: 0.9rem;
-            line-height: 1.6;
         }
 
-        .faq-item.active .faq-answer {
-            max-height: 150px;
-            margin-top: 12px;
-        }
+        .faq-item.active .faq-answer { max-height: 150px; margin-top: 12px; }
 
-        /* 10. Contact Form */
+        /* Contact Wrapper */
         .contact-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid var(--card-border);
             border-radius: 24px;
             padding: 48px;
+            backdrop-filter: blur(12px);
             box-shadow: var(--shadow-lg);
         }
 
@@ -480,8 +415,6 @@
             background: #f8fafc;
             border: 1px solid var(--card-border);
             border-radius: 10px;
-            color: var(--text-main);
-            font-size: 0.9rem;
             outline: none;
             margin-bottom: 16px;
             transition: all 0.3s ease;
@@ -489,7 +422,7 @@
 
         .form-input:focus {
             border-color: var(--accent-primary);
-            background: #ffffff;
+            background: #fff;
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
@@ -499,7 +432,7 @@
             border-top: 1px solid var(--card-border);
             color: var(--text-muted);
             font-size: 0.85rem;
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.8);
         }
 
         @media (max-width: 900px) {
@@ -507,15 +440,15 @@
             .hero-title { font-size: 2.4rem; }
             .nav-links { display: none; }
             .service-row { grid-template-columns: 1fr; gap: 8px; }
-            .hero-stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-grid"></div>
+    <!-- 3D Canvas Background -->
+    <canvas id="webgl-bg"></canvas>
 
-    <!-- 1. Floating Pill Header -->
+    <!-- Header -->
     <header>
         <div class="logo">MOHIBULLAH<span>.</span></div>
         <ul class="nav-links">
@@ -528,10 +461,10 @@
         <a href="#contact" class="btn-header">Let's Talk</a>
     </header>
 
-    <!-- 2. Hero Section with Key Stats Right Beside/Under Header -->
+    <!-- Hero Section -->
     <section class="hero" id="about">
         <div class="hero-grid">
-            <div>
+            <div class="gsap-hero-text">
                 <div class="badge-pill">
                     <i class="fa-solid fa-bolt"></i> Digital Creator & Strategist
                 </div>
@@ -540,54 +473,54 @@
                 
                 <a href="#contact" class="btn-header" style="padding: 12px 28px;">Start a Project</a>
 
-                <!-- Main Points Visible Immediately on Hero Screen -->
+                <!-- Hero Stats Grid -->
                 <div class="hero-stats-grid">
-                    <div class="hero-stat-card">
+                    <div class="hero-stat-card tilt-card">
                         <div class="hero-stat-number">3+ Years</div>
                         <div class="hero-stat-label">Industry Experience</div>
                     </div>
-                    <div class="hero-stat-card">
+                    <div class="hero-stat-card tilt-card">
                         <div class="hero-stat-number">150+</div>
                         <div class="hero-stat-label">Projects Delivered</div>
                     </div>
-                    <div class="hero-stat-card">
+                    <div class="hero-stat-card tilt-card">
                         <div class="hero-stat-number">4+</div>
                         <div class="hero-stat-label">Global Partners</div>
                     </div>
-                    <div class="hero-stat-card">
+                    <div class="hero-stat-card tilt-card">
                         <div class="hero-stat-number">99%</div>
                         <div class="hero-stat-label">Client Satisfaction</div>
                     </div>
                 </div>
             </div>
 
-            <div class="hero-img-box">
+            <div class="tilt-card hero-img-box gsap-hero-img">
                 <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000" alt="Md Mohibullah Biswas">
             </div>
         </div>
     </section>
 
-    <!-- 3. Key Capabilities -->
-    <section class="section-container">
+    <!-- Capabilities -->
+    <section class="section-container gsap-reveal">
         <span class="section-tag">Capabilities</span>
         <h2 class="section-heading">High-Impact Digital Solutions</h2>
         <div class="grid-4">
-            <div class="glass-card">
+            <div class="glass-card tilt-card">
                 <i class="fa-solid fa-video card-icon"></i>
                 <h3>High-Retention Editing</h3>
                 <p>Dynamic cuts, narrative pacing, and sound engineering designed to boost watch time.</p>
             </div>
-            <div class="glass-card">
+            <div class="glass-card tilt-card">
                 <i class="fa-solid fa-wand-magic-sparkles card-icon"></i>
                 <h3>Brand Identity</h3>
                 <p>Modern visual branding kits and high CTR thumbnail graphics.</p>
             </div>
-            <div class="glass-card">
+            <div class="glass-card tilt-card">
                 <i class="fa-solid fa-gamepad card-icon"></i>
                 <h3>Esports Media</h3>
                 <p>Professional esports banners, tournament promos, and highlight edits.</p>
             </div>
-            <div class="glass-card">
+            <div class="glass-card tilt-card">
                 <i class="fa-solid fa-code card-icon"></i>
                 <h3>Workflow Automation</h3>
                 <p>Custom Python automation scripts to streamline video production workflows.</p>
@@ -595,21 +528,21 @@
         </div>
     </section>
 
-    <!-- 4. Global Partners Section (Explicitly Showing 4 Global Partners) -->
-    <section class="section-container" id="partners">
+    <!-- Global Partners -->
+    <section class="section-container gsap-reveal" id="partners">
         <span class="section-tag">Global Network</span>
         <h2 class="section-heading">4+ Global Partners Worked With</h2>
         <div class="logo-grid">
-            <div class="partner-box"><i class="fa-solid fa-trophy"></i> Efootball Council BD</div>
-            <div class="partner-box"><i class="fa-solid fa-gamepad"></i> ZIM FF</div>
-            <div class="partner-box"><i class="fa-solid fa-graduation-cap"></i> Sohoj English Academy</div>
-            <div class="partner-box"><i class="fa-solid fa-shield-halved"></i> River Bolesswar eFC</div>
+            <div class="partner-box tilt-card"><i class="fa-solid fa-trophy"></i> Efootball Council BD</div>
+            <div class="partner-box tilt-card"><i class="fa-solid fa-gamepad"></i> ZIM FF</div>
+            <div class="partner-box tilt-card"><i class="fa-solid fa-graduation-cap"></i> Sohoj English Academy</div>
+            <div class="partner-box tilt-card"><i class="fa-solid fa-shield-halved"></i> River Bolesswar eFC</div>
         </div>
     </section>
 
-    <!-- 5. Statement Section -->
-    <section class="section-container">
-        <div class="statement-box">
+    <!-- Statement Section -->
+    <section class="section-container gsap-reveal">
+        <div class="statement-box tilt-card">
             <div class="statement-left">
                 <h2>CRAFTING HIGH-RETENTION MEDIA & INTUITIVE DESIGNS</h2>
             </div>
@@ -619,8 +552,8 @@
         </div>
     </section>
 
-    <!-- 6. Services Section -->
-    <section class="section-container" id="services">
+    <!-- Services Section -->
+    <section class="section-container gsap-reveal" id="services">
         <span class="section-tag">Services</span>
         <h2 class="section-heading">What I Deliver</h2>
         <div class="services-stack">
@@ -642,28 +575,28 @@
         </div>
     </section>
 
-    <!-- 7. Portfolio Showcase -->
-    <section class="section-container" id="portfolio">
+    <!-- Portfolio Showcase -->
+    <section class="section-container gsap-reveal" id="portfolio">
         <span class="section-tag">Portfolio</span>
         <h2 class="section-heading">Featured Showcase</h2>
-        <div class="portfolio-card">
+        <div class="portfolio-card tilt-card">
             <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Featured Work" allowfullscreen></iframe>
         </div>
     </section>
 
-    <!-- 8. Client Satisfaction & Testimonials -->
-    <section class="section-container">
+    <!-- Testimonials -->
+    <section class="section-container gsap-reveal">
         <span class="section-tag">Client Satisfaction</span>
         <h2 class="section-heading">Client Feedback</h2>
         <div class="testimonial-grid">
-            <div class="testimonial-card">
+            <div class="testimonial-card tilt-card">
                 <p>"Mohibullah's video editing turned our content into high-retention masterpieces. Exceptional attention to visual pacing and sound design!"</p>
                 <div class="client-info">
                     <h5>Md Imran Hossain</h5>
                     <span>Media Client (Australia)</span>
                 </div>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card tilt-card">
                 <p>"Top-tier esports graphics and video assets. Reliable, punctual, and delivers 100% client satisfaction every time."</p>
                 <div class="client-info">
                     <h5>Efootball Council BD</h5>
@@ -673,8 +606,8 @@
         </div>
     </section>
 
-    <!-- 9. FAQ Section -->
-    <section class="section-container" id="faq">
+    <!-- FAQ Section -->
+    <section class="section-container gsap-reveal" id="faq">
         <span class="section-tag">FAQ</span>
         <h2 class="section-heading">Frequently Asked Questions</h2>
         <div class="faq-item">
@@ -687,9 +620,9 @@
         </div>
     </section>
 
-    <!-- 10. Contact Form -->
-    <section class="section-container" id="contact">
-        <div class="contact-wrapper">
+    <!-- Contact Form -->
+    <section class="section-container gsap-reveal" id="contact">
+        <div class="contact-wrapper tilt-card">
             <div>
                 <span class="section-tag">Connect</span>
                 <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 16px;">Let's Build Something Great</h2>
@@ -708,18 +641,111 @@
         <p>&copy; 2026 Md Mohibullah Biswas. All rights reserved.</p>
     </footer>
 
+    <!-- 3D & Interactive Scripts -->
     <script>
-        // Interactive FAQ Accordion
+        // 1. Three.js Interactive 3D Background Engine
+        const canvas = document.getElementById('webgl-bg');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Create 3D Geometric Floating Objects
+        const geometry = new THREE.IcosahedronGeometry(1.2, 0);
+        const material = new THREE.MeshNormalMaterial({ wireframe: true });
+        const meshes = [];
+
+        for (let i = 0; i < 25; i++) {
+            const mesh = new THREE.Mesh(geometry, material);
+            mesh.position.x = (Math.random() - 0.5) * 20;
+            mesh.position.y = (Math.random() - 0.5) * 20;
+            mesh.position.z = (Math.random() - 0.5) * 20;
+            mesh.rotation.x = Math.random() * Math.PI;
+            mesh.rotation.y = Math.random() * Math.PI;
+            scene.add(mesh);
+            meshes.push(mesh);
+        }
+
+        camera.position.z = 8;
+
+        // Mouse Movement Interaction
+        let mouseX = 0, mouseY = 0;
+        window.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
+        });
+
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            meshes.forEach(mesh => {
+                mesh.rotation.x += 0.003;
+                mesh.rotation.y += 0.005;
+            });
+
+            camera.position.x += (mouseX - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Responsive Resizing
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // 2. 3D Tilt Effect on Mouse Hover
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                card.style.transform = `perspective(1000px) rotateX(${-y / 15}deg) rotateY(${x / 15}deg) translateY(-4px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+            });
+        });
+
+        // 3. GSAP & ScrollTrigger Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Entrance animation for Hero
+        gsap.from('.gsap-hero-text', { opacity: 0, y: 50, duration: 1.2, ease: 'power3.out' });
+        gsap.from('.gsap-hero-img', { opacity: 0, scale: 0.9, duration: 1.2, delay: 0.3, ease: 'power3.out' });
+
+        // Scroll reveal for all main sections
+        gsap.utils.toArray('.gsap-reveal').forEach(section => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                y: 40,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        });
+
+        // 4. Interactive FAQ Accordion
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', () => {
                 item.classList.toggle('active');
                 const icon = item.querySelector('.faq-question i');
-                if(item.classList.contains('active')) {
-                    icon.classList.remove('fa-plus');
-                    icon.classList.add('fa-minus');
+                if (item.classList.contains('active')) {
+                    icon.className = 'fa-solid fa-minus';
                 } else {
-                    icon.classList.remove('fa-minus');
-                    icon.classList.add('fa-plus');
+                    icon.className = 'fa-solid fa-plus';
                 }
             });
         });
