@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Md Mohibullah Biswas | Portfolio</title>
-    <!-- Google Fonts & FontAwesome -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -19,19 +19,20 @@
         }
 
         body {
-            background-color: #f4f4f2;
+            background-color: #dcdcd6; /* Warm grey tone from reference */
             color: #1a1a1a;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
 
-        /* 1. Top Editorial Navigation */
+        /* 1. Header Navigation */
         header {
             position: sticky;
             top: 0;
             width: 100%;
-            background: #ffffff;
-            border-bottom: 1px solid #e2e2e0;
+            background: rgba(220, 220, 214, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #c8c8c2;
             z-index: 100;
         }
 
@@ -61,7 +62,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-left: 1px solid #e2e2e0;
+            border-left: 1px solid #c8c8c2;
             text-decoration: none;
             color: #1a1a1a;
             font-size: 0.8rem;
@@ -72,10 +73,10 @@
         }
 
         .nav-item:hover {
-            background: #fafafa;
+            background: #d0d0ca;
         }
 
-        /* 2. Hero Section (First Fold Screen) */
+        /* 2. Hero Section (Image 1 Style) */
         .hero {
             position: relative;
             min-height: calc(100vh - 60px);
@@ -86,7 +87,6 @@
             overflow: hidden;
         }
 
-        /* Oversized Background Typography */
         .hero-title-bg {
             position: absolute;
             top: 50%;
@@ -111,7 +111,6 @@
             line-height: 1;
         }
 
-        /* PNG Subject Image Layering */
         .hero-image-wrapper {
             position: relative;
             z-index: 2;
@@ -125,12 +124,10 @@
             width: 100%;
             height: auto;
             display: block;
-            /* Transparent Overlay Effect */
             mix-blend-mode: multiply;
             filter: grayscale(100%) contrast(120%);
         }
 
-        /* Floating Text Left & Right */
         .hero-content-left {
             position: absolute;
             bottom: 60px;
@@ -160,9 +157,7 @@
             transition: opacity 0.3s;
         }
 
-        .btn-editorial:hover {
-            opacity: 0.9;
-        }
+        .btn-editorial:hover { opacity: 0.9; }
 
         .hero-content-right {
             position: absolute;
@@ -187,146 +182,171 @@
             color: #1a1a1a;
         }
 
-        /* Common Container & Section Title */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 24px;
+        /* 3. Sub-Features Grid (Image 2 Style) */
+        .sub-features {
+            border-top: 1px solid #c8c8c2;
+            border-bottom: 1px solid #c8c8c2;
+            padding: 40px 0;
         }
 
-        .section-header {
-            margin-bottom: 60px;
-            border-bottom: 1px solid #e2e2e0;
-            padding-bottom: 20px;
+        .features-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 0 24px;
+        }
+
+        .feature-item h4 {
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .feature-item p {
+            font-size: 0.85rem;
+            color: #555550;
+            line-height: 1.4;
+        }
+
+        /* 4. Trusted By Section (Image 2 Grid Style) */
+        .trusted-section {
+            padding: 80px 24px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .trusted-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: center;
+            margin-bottom: 30px;
         }
 
-        .section-header h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            letter-spacing: 1px;
-        }
-
-        /* 3. Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-card {
-            background: #ffffff;
-            border: 1px solid #e2e2e0;
-            padding: 36px 28px;
-            transition: transform 0.3s;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-card i {
-            font-size: 1.8rem;
-            color: #4b6b75;
-            margin-bottom: 20px;
-        }
-
-        .skill-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .skill-card p {
-            font-size: 0.9rem;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* 4. Portfolio Works Section */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 30px;
-        }
-
-        .work-card {
-            background: #ffffff;
-            border: 1px solid #e2e2e0;
-        }
-
-        .video-box {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            background: #000;
-        }
-
-        .video-box iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: 0;
-        }
-
-        .work-info {
-            padding: 24px;
-        }
-
-        .work-tag {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            color: #4b6b75;
+        .trusted-header h3 {
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .work-info h3 {
-            font-size: 1.1rem;
-            margin-top: 8px;
-            font-weight: 600;
-        }
-
-        /* 5. Contact Section */
-        .contact-section {
-            background: #ffffff;
-            border-top: 1px solid #e2e2e0;
-            text-align: center;
-            padding: 100px 24px;
-        }
-
-        .contact-section h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-        }
-
-        .contact-section p {
-            color: #666;
-            max-width: 500px;
-            margin: 0 auto 32px;
-        }
-
-        footer {
-            border-top: 1px solid #e2e2e0;
-            padding: 30px 24px;
-            text-align: center;
+        .trusted-header p {
             font-size: 0.85rem;
-            color: #888;
+            color: #666660;
         }
 
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid #c8c8c2;
+            border-left: 1px solid #c8c8c2;
+        }
+
+        .logo-box {
+            border-right: 1px solid #c8c8c2;
+            border-bottom: 1px solid #c8c8c2;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #444440;
+        }
+
+        /* 5. Crafting Meaningful Brands (Image 2 Typography Section) */
+        .statement-section {
+            padding: 100px 24px;
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .statement-left h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .statement-right p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #333330;
+            margin-bottom: 20px;
+        }
+
+        .statement-right p.lead {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* 6. Portfolio Showcase Section (Image 2 Style) */
+        .portfolio-section {
+            padding: 60px 24px 120px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+        }
+
+        .portfolio-header h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .portfolio-header p {
+            font-size: 0.85rem;
+            color: #666660;
+            max-width: 400px;
+        }
+
+        .portfolio-large-card {
+            width: 100%;
+            height: 550px;
+            background: #bebeb8;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .portfolio-large-card iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 900px) {
             .nav-wrapper { grid-template-columns: 60px repeat(2, 1fr); }
             .nav-item:nth-child(n+4) { display: none; }
-            .title-part { font-size: 14vw; }
-            .hero { flex-direction: column; padding-top: 80px; }
+            .features-grid, .logo-grid { grid-template-columns: repeat(2, 1fr); }
+            .statement-section { grid-template-columns: 1fr; gap: 30px; }
+            .statement-left h2 { font-size: 2rem; }
             .hero-content-left, .hero-content-right {
                 position: relative;
                 bottom: 0; left: 0; right: 0;
-                max-width: 100%; margin-top: 24px;
+                max-width: 100%; margin-top: 20px;
             }
+            .hero { flex-direction: column; padding-top: 80px; }
         }
     </style>
 </head>
@@ -342,108 +362,93 @@
             </div>
             <a href="#about" class="nav-item">MISSION</a>
             <a href="#about" class="nav-item">ABOUT</a>
-            <a href="#services" class="nav-item">SERVICES</a>
+            <a href="#portfolio" class="nav-item">WORKS</a>
             <a href="#contact" class="nav-item">CONTACT</a>
         </div>
     </header>
 
-    <!-- FIRST SCREEN: Editorial Hero Section -->
+    <!-- SECTION 1: Editorial Hero Section (Reference 1) -->
     <section class="hero" id="about">
-        
-        <!-- Background Text (Depth Behind Image) -->
         <div class="hero-title-bg">
             <span class="title-part">MOHIB</span>
             <span class="title-part">ULLAH</span>
         </div>
 
-        <!-- PNG Subject Image -->
         <div class="hero-image-wrapper">
-            <img src="https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/items/poke-ball.png" id="hero-img" alt="Md Mohibullah Biswas">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000" alt="Md Mohibullah Biswas">
         </div>
 
-        <!-- Left Column (Subtext & Button) -->
         <div class="hero-content-left">
             <p>Sometimes the boldest thing you can do is simply start building your story.</p>
-            <a href="#contact" class="btn-editorial">[ CONTACT ]</a>
+            <a href="#contact" class="btn-editorial">[ CONTACT ME ]</a>
         </div>
 
-        <!-- Right Column (Subtext) -->
         <div class="hero-content-right">
-            <p>Visual storytelling, high-retention video post-production, and digital design.</p>
+            <p>Crafting high-retention video narratives, video production, and visual branding.</p>
         </div>
-
     </section>
 
-    <!-- SECOND FOLD: Skills & Services Section -->
-    <div class="container" id="services">
-        <div class="section-header">
-            <h2>MY SERVICES</h2>
-            <span>01 / EXPERTISE</span>
-        </div>
-
-        <div class="skills-grid">
-            <div class="skill-card">
-                <i class="fa-solid fa-video"></i>
-                <h3>Video Editing</h3>
-                <p>High retention YouTube editing, Reels, motion graphics, sound design, and color grading.</p>
+    <!-- SECTION 2: Sub-Features Grid (Reference 2) -->
+    <section class="sub-features">
+        <div class="features-grid">
+            <div class="feature-item">
+                <h4>USER-CENTERED DESIGN</h4>
+                <p>Intuitive and engaging experiences tailored for your audience.</p>
             </div>
-            <div class="skill-card">
-                <i class="fa-solid fa-pen-nib"></i>
-                <h3>Graphic Design</h3>
-                <p>High CTR thumbnails, social media branding assets, and promotional visual banners.</p>
+            <div class="feature-item">
+                <h4>BRAND IDENTITY & STRATEGY</h4>
+                <p>Strong visual storytelling that makes your brand unforgettable.</p>
             </div>
-            <div class="skill-card">
-                <i class="fa-solid fa-code"></i>
-                <h3>Tech Automation</h3>
-                <p>Python workflow scripting, automation, web design, and social media management.</p>
+            <div class="feature-item">
+                <h4>RESPONSIVE & MODERN UI</h4>
+                <p>Pixel-perfect designs optimized for all modern digital devices.</p>
+            </div>
+            <div class="feature-item">
+                <h4>HIGH-RETENTION EDITING</h4>
+                <p>Dynamic motion storytelling to bring content to life before release.</p>
             </div>
         </div>
-    </div>
-
-    <!-- THIRD FOLD: Selected Portfolio Works -->
-    <div class="container" style="padding-top: 0;">
-        <div class="section-header">
-            <h2>SELECTED WORKS</h2>
-            <span>02 / PORTFOLIO</span>
-        </div>
-
-        <div class="portfolio-grid">
-            <div class="work-card">
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video Work" allowfullscreen></iframe>
-                </div>
-                <div class="work-info">
-                    <span class="work-tag">YouTube Post-Production</span>
-                    <h3>High-Retention Cinematic Showcase</h3>
-                </div>
-            </div>
-
-            <div class="work-card">
-                <div class="video-box">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video Work" allowfullscreen></iframe>
-                </div>
-                <div class="work-info">
-                    <span class="work-tag">Motion Reel</span>
-                    <h3>Esports & Gaming Short Content</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- FOURTH FOLD: Contact Section -->
-    <section class="contact-section" id="contact">
-        <h2>LET'S WORK TOGETHER</h2>
-        <p>Available for freelance video editing, thumbnail design, and remote content creation projects.</p>
-        <a href="mailto:your-email@gmail.com" class="btn-editorial">[ SEND EMAIL ]</a>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Md Mohibullah Biswas. All rights reserved.</p>
-    </footer>
+    <!-- SECTION 3: Trusted By Logo Grid (Reference 2) -->
+    <section class="trusted-section">
+        <div class="trusted-header">
+            <h3>TRUSTED BY</h3>
+            <p>Join world-class brands and YouTube creators building impactful stories.</p>
+        </div>
+        <div class="logo-grid">
+            <div class="logo-box"><i class="fa-solid fa-cube"></i> Frame Blox</div>
+            <div class="logo-box"><i class="fa-solid fa-circle"></i> Supa Blox</div>
+            <div class="logo-box"><i class="fa-solid fa-hourglass"></i> Hype Blox</div>
+            <div class="logo-box"><i class="fa-solid fa-shapes"></i> Ultra Blox</div>
+            <div class="logo-box"><i class="fa-solid fa-paper-plane"></i> Ship Blox</div>
+            <div class="logo-box"><i class="fa-solid fa-cube"></i> Frame Blox</div>
+            <div class="logo-box"><i class="fa-solid fa-shapes"></i> Ultra Blox</div>
+            <div class="logo-box"><i class="fa-solid fa-paper-plane"></i> Ship Blox</div>
+        </div>
+    </section>
 
-    <script>
-        // Default transparent portrait fallback
-        document.getElementById('hero-img').src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000';
-    </script>
+    <!-- SECTION 4: Big Typography About Statement (Reference 2) -->
+    <section class="statement-section">
+        <div class="statement-left">
+            <h2>CRAFTING MEANINGFUL BRANDS & INTUITIVE EXPERIENCES</h2>
+        </div>
+        <div class="statement-right">
+            <p class="lead">Hey, I'm Mohibullah, a Video Editor and Creative Designer passionate about creating visually compelling digital experiences.</p>
+            <p>With a keen eye for aesthetics and deep audience understanding, I build brands and visual content that not only look great but also resonate. Whether it's editing high-retention post-production projects or building strong graphic assets, I blend strategy, creativity, and functionality to bring ideas to life.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 5: Portfolio Section (Reference 2) -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="portfolio-header">
+            <h2>PORTFOLIO</h2>
+            <p>Explore my recent video creations and graphic assets to discover how we can transform your vision.</p>
+        </div>
+        <div class="portfolio-large-card">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Featured Work" allowfullscreen></iframe>
+        </div>
+    </section>
+
 </body>
 </html>
