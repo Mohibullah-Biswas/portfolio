@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Md Mohibullah Biswas | Portfolio</title>
-    <!-- Google Fonts -->
+    <!-- Google Fonts & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -23,11 +25,14 @@
             overflow-x: hidden;
         }
 
-        /* Editorial Header Navigation */
+        /* 1. Top Editorial Navigation */
         header {
+            position: sticky;
+            top: 0;
             width: 100%;
             background: #ffffff;
             border-bottom: 1px solid #e2e2e0;
+            z-index: 100;
         }
 
         .nav-wrapper {
@@ -70,7 +75,7 @@
             background: #fafafa;
         }
 
-        /* Hero Section */
+        /* 2. Hero Section (First Fold Screen) */
         .hero {
             position: relative;
             min-height: calc(100vh - 60px);
@@ -101,28 +106,31 @@
             font-family: 'Cinzel', serif;
             font-size: 11vw;
             font-weight: 900;
-            color: #111111;
+            color: #1a1a1a;
             letter-spacing: -2px;
             line-height: 1;
         }
 
-        /* Center Subject Image */
+        /* PNG Subject Image Layering */
         .hero-image-wrapper {
             position: relative;
             z-index: 2;
-            max-width: 500px;
-            width: 80%;
+            max-width: 480px;
+            width: 75%;
             margin: 0 auto;
+            pointer-events: none;
         }
 
         .hero-image-wrapper img {
             width: 100%;
             height: auto;
             display: block;
-            filter: grayscale(100%) contrast(110%);
+            /* Transparent Overlay Effect */
+            mix-blend-mode: multiply;
+            filter: grayscale(100%) contrast(120%);
         }
 
-        /* Floating Minimalist Content */
+        /* Floating Text Left & Right */
         .hero-content-left {
             position: absolute;
             bottom: 60px;
@@ -142,7 +150,7 @@
             display: inline-block;
             background-color: #4b6b75;
             color: #ffffff;
-            padding: 12px 28px;
+            padding: 14px 28px;
             text-decoration: none;
             font-size: 0.8rem;
             font-weight: 600;
@@ -162,7 +170,6 @@
             right: 60px;
             z-index: 3;
             max-width: 280px;
-            text-align: left;
         }
 
         .hero-content-right p {
@@ -180,36 +187,152 @@
             color: #1a1a1a;
         }
 
-        /* Mobile Responsiveness */
+        /* Common Container & Section Title */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 24px;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid #e2e2e0;
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* 3. Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: #ffffff;
+            border: 1px solid #e2e2e0;
+            padding: 36px 28px;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card i {
+            font-size: 1.8rem;
+            color: #4b6b75;
+            margin-bottom: 20px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .skill-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 4. Portfolio Works Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .work-card {
+            background: #ffffff;
+            border: 1px solid #e2e2e0;
+        }
+
+        .video-box {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: #000;
+        }
+
+        .video-box iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+
+        .work-info {
+            padding: 24px;
+        }
+
+        .work-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #4b6b75;
+            text-transform: uppercase;
+        }
+
+        .work-info h3 {
+            font-size: 1.1rem;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        /* 5. Contact Section */
+        .contact-section {
+            background: #ffffff;
+            border-top: 1px solid #e2e2e0;
+            text-align: center;
+            padding: 100px 24px;
+        }
+
+        .contact-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .contact-section p {
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        footer {
+            border-top: 1px solid #e2e2e0;
+            padding: 30px 24px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
         @media (max-width: 900px) {
-            .nav-wrapper {
-                grid-template-columns: 60px repeat(2, 1fr);
-            }
-            .nav-item:nth-child(n+4) {
-                display: none;
-            }
-            .title-part {
-                font-size: 14vw;
-            }
+            .nav-wrapper { grid-template-columns: 60px repeat(2, 1fr); }
+            .nav-item:nth-child(n+4) { display: none; }
+            .title-part { font-size: 14vw; }
+            .hero { flex-direction: column; padding-top: 80px; }
             .hero-content-left, .hero-content-right {
                 position: relative;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                max-width: 100%;
-                margin-top: 30px;
-            }
-            .hero {
-                flex-direction: column;
-                justify-content: center;
-                padding-top: 80px;
+                bottom: 0; left: 0; right: 0;
+                max-width: 100%; margin-top: 24px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Editorial Top Navigation -->
+    <!-- Header Navigation -->
     <header>
         <div class="nav-wrapper">
             <div class="menu-icon">
@@ -224,32 +347,103 @@
         </div>
     </header>
 
-    <!-- Main Hero Section -->
-    <section class="hero">
+    <!-- FIRST SCREEN: Editorial Hero Section -->
+    <section class="hero" id="about">
         
-        <!-- Big Typography Behind Image -->
+        <!-- Background Text (Depth Behind Image) -->
         <div class="hero-title-bg">
             <span class="title-part">MOHIB</span>
             <span class="title-part">ULLAH</span>
         </div>
 
-        <!-- Center Portrait Image -->
+        <!-- PNG Subject Image -->
         <div class="hero-image-wrapper">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000" alt="Md Mohibullah Biswas">
+            <img src="https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/items/poke-ball.png" id="hero-img" alt="Md Mohibullah Biswas">
         </div>
 
-        <!-- Left Column Subtext & Action Button -->
+        <!-- Left Column (Subtext & Button) -->
         <div class="hero-content-left">
             <p>Sometimes the boldest thing you can do is simply start building your story.</p>
             <a href="#contact" class="btn-editorial">[ CONTACT ]</a>
         </div>
 
-        <!-- Right Column Subtext -->
+        <!-- Right Column (Subtext) -->
         <div class="hero-content-right">
-            <p>Crafting high-retention video narratives, premium design assets, and digital strategies.</p>
+            <p>Visual storytelling, high-retention video post-production, and digital design.</p>
         </div>
 
     </section>
 
+    <!-- SECOND FOLD: Skills & Services Section -->
+    <div class="container" id="services">
+        <div class="section-header">
+            <h2>MY SERVICES</h2>
+            <span>01 / EXPERTISE</span>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fa-solid fa-video"></i>
+                <h3>Video Editing</h3>
+                <p>High retention YouTube editing, Reels, motion graphics, sound design, and color grading.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-pen-nib"></i>
+                <h3>Graphic Design</h3>
+                <p>High CTR thumbnails, social media branding assets, and promotional visual banners.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-code"></i>
+                <h3>Tech Automation</h3>
+                <p>Python workflow scripting, automation, web design, and social media management.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- THIRD FOLD: Selected Portfolio Works -->
+    <div class="container" style="padding-top: 0;">
+        <div class="section-header">
+            <h2>SELECTED WORKS</h2>
+            <span>02 / PORTFOLIO</span>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="work-card">
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video Work" allowfullscreen></iframe>
+                </div>
+                <div class="work-info">
+                    <span class="work-tag">YouTube Post-Production</span>
+                    <h3>High-Retention Cinematic Showcase</h3>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="video-box">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video Work" allowfullscreen></iframe>
+                </div>
+                <div class="work-info">
+                    <span class="work-tag">Motion Reel</span>
+                    <h3>Esports & Gaming Short Content</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOURTH FOLD: Contact Section -->
+    <section class="contact-section" id="contact">
+        <h2>LET'S WORK TOGETHER</h2>
+        <p>Available for freelance video editing, thumbnail design, and remote content creation projects.</p>
+        <a href="mailto:your-email@gmail.com" class="btn-editorial">[ SEND EMAIL ]</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Md Mohibullah Biswas. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Default transparent portrait fallback
+        document.getElementById('hero-img').src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000';
+    </script>
 </body>
 </html>
