@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md Mohibullah Biswas - Visual Storyteller & Tech Specialist</title>
-    <!-- Google Fonts -->
+    <title>Md Mohibullah Biswas | Video Editor & Content Strategist</title>
+    <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* Modern Minimalist Aesthetic Base Style */
         :root {
-            --bg-main: #EFECE6; /* Subtle warm grey from 2nd image */
-            --bg-card: #E4E0D7;
-            --text-dark: #121212;
-            --text-muted: #555555;
-            --accent-green: #CBEA7B; /* Mint/Lime accent from 1st image */
-            --accent-dark: #1E1E1E;
-            --border-color: rgba(0, 0, 0, 0.12);
-            --font-heading: 'Syne', sans-serif;
+            --bg-dark: #0a0b10;
+            --bg-card: #12151e;
+            --bg-card-hover: #1a1e2b;
+            --accent-primary: #6366f1;
+            --accent-cyan: #06b6d4;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --font-head: 'Syne', sans-serif;
             --font-body: 'Plus Jakarta Sans', sans-serif;
         }
 
@@ -26,26 +28,31 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-main);
-            color: var(--text-dark);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             font-family: var(--font-body);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Container */
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Header / Navbar */
         header {
-            padding: 30px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 11, 16, 0.85);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -53,362 +60,346 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 80px;
         }
 
         .logo {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
+            font-family: var(--font-head);
+            font-size: 1.6rem;
             font-weight: 800;
             text-decoration: none;
-            color: var(--text-dark);
+            color: #fff;
             letter-spacing: -0.5px;
         }
 
+        .logo span { color: var(--accent-cyan); }
+
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 32px;
             list-style: none;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 600;
+            color: var(--text-muted);
+            font-weight: 500;
             font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: opacity 0.3s;
+            transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            opacity: 0.6;
+        .nav-links a:hover { color: var(--accent-cyan); }
+
+        .btn-hire {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan));
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        /* Hero Section (Image 2 style with Image 1 element inspiration) */
+        .btn-hire:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+        }
+
         .hero {
-            padding: 80px 0 60px;
+            padding: 160px 0 100px;
             display: grid;
-            grid-template-columns: 1fr 1fr 280px;
-            gap: 40px;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
             align-items: center;
-            border-bottom: 1px solid var(--border-color);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: var(--accent-cyan);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .badge span {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-cyan);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--accent-cyan);
         }
 
         .hero-left h1 {
-            font-family: var(--font-heading);
-            font-size: 3.5rem;
-            line-height: 1.05;
+            font-family: var(--font-head);
+            font-size: 3.8rem;
+            line-height: 1.1;
             font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #ffffff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero-left p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            margin-bottom: 32px;
-            max-width: 480px;
+            margin-bottom: 36px;
+            max-width: 580px;
         }
 
-        .btn-primary {
-            display: inline-flex;
+        .hero-btns {
+            display: flex;
+            gap: 16px;
             align-items: center;
-            gap: 12px;
-            background-color: var(--accent-dark);
-            color: #ffffff;
-            padding: 16px 32px;
-            border-radius: 50px;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 14px 28px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
-            transition: transform 0.3s, background-color 0.3s;
+            transition: all 0.3s;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            background-color: #000;
+        .btn-outline:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
         }
 
         .hero-center {
+            position: relative;
             display: flex;
             justify-content: center;
+        }
+
+        .profile-card {
             position: relative;
-        }
-
-        .profile-img-container {
             width: 100%;
-            max-width: 360px;
-            height: 460px;
-            border-radius: 200px 200px 0 0; /* Arch shape like Image 2 */
+            max-width: 380px;
+            height: 480px;
+            border-radius: 24px;
             overflow: hidden;
-            background-color: #D6D1C7;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
-        .profile-img-container img {
+        .profile-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%);
-            transition: filter 0.5s;
         }
 
-        .profile-img-container:hover img {
-            filter: grayscale(0%);
+        .stats-section {
+            padding: 40px 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            margin-bottom: 100px;
+            border-radius: 16px;
         }
 
-        .hero-right-stats {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .stat-card {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
-        }
-
-        .stat-card .number {
-            font-family: var(--font-heading);
-            font-size: 2.8rem;
-            font-weight: 800;
-            line-height: 1;
-        }
-
-        .stat-card .label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 6px;
-        }
-
-        /* Services Grid (4 Column Layout from Image 2) */
-        .services-bar {
-            padding: 60px 0;
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            border-bottom: 1px solid var(--border-color);
+            text-align: center;
         }
 
-        .service-box h3 {
-            font-family: var(--font-heading);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            font-weight: 700;
+        .stat-item h3 {
+            font-family: var(--font-head);
+            font-size: 2.5rem;
+            color: #fff;
         }
 
-        .service-box p {
+        .stat-item p {
             font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-header {
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-head);
+            font-size: 2.6rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 100px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            background: var(--bg-card-hover);
+            border-color: rgba(6, 182, 212, 0.4);
+        }
+
+        .skill-icon {
+            font-size: 2.2rem;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .skill-card p {
+            font-size: 0.95rem;
             color: var(--text-muted);
         }
 
-        /* Trusted By / Experience Section */
-        .trusted-by {
-            padding: 80px 0;
-            border-bottom: 1px solid var(--border-color);
+        .clients-section {
+            padding-bottom: 100px;
         }
 
-        .trusted-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 40px;
-        }
-
-        .trusted-header h2 {
-            font-family: var(--font-heading);
-            font-size: 2.2rem;
-            text-transform: uppercase;
-        }
-
-        .trusted-grid {
+        .clients-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 16px;
         }
 
         .client-card {
-            background-color: var(--bg-card);
-            padding: 24px 30px;
-            border-radius: 8px;
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-main);
             display: flex;
             align-items: center;
-            gap: 16px;
-            font-weight: 700;
-            font-size: 1.05rem;
+            justify-content: center;
+            gap: 12px;
         }
 
-        .client-card span {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            background-color: var(--accent-dark);
-            border-radius: 50%;
-        }
+        .client-card i { color: var(--accent-cyan); }
 
-        /* About Section (High Impact Text from Image 2) */
-        .about-section {
-            padding: 100px 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .about-title h2 {
-            font-family: var(--font-heading);
-            font-size: 3rem;
-            line-height: 1.1;
-            text-transform: uppercase;
-        }
-
-        .about-content p {
-            font-size: 1.1rem;
-            color: var(--text-dark);
-            margin-bottom: 24px;
-        }
-
-        .about-content p.highlight {
-            color: var(--text-muted);
-        }
-
-        /* Filterable Portfolio Section */
         .portfolio-section {
-            padding: 100px 0;
-        }
-
-        .portfolio-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        .portfolio-header h2 {
-            font-family: var(--font-heading);
-            font-size: 3rem;
-            text-transform: uppercase;
+            padding-bottom: 100px;
         }
 
         .filter-buttons {
             display: flex;
             gap: 12px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
         }
 
         .filter-btn {
-            background: transparent;
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
-            padding: 10px 20px;
+            color: var(--text-muted);
+            padding: 10px 24px;
             border-radius: 30px;
-            font-family: var(--font-body);
             font-weight: 600;
-            font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.3s;
         }
 
         .filter-btn.active, .filter-btn:hover {
-            background-color: var(--accent-dark);
-            color: #ffffff;
-            border-color: var(--accent-dark);
+            background: var(--accent-cyan);
+            color: #000;
+            border-color: var(--accent-cyan);
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
             gap: 30px;
         }
 
-        .portfolio-item {
-            background-color: var(--bg-card);
-            border-radius: 12px;
+        .work-card {
+            background: var(--bg-card);
+            border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--border-color);
-            transition: transform 0.3s;
         }
 
-        .portfolio-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .video-container {
+        .video-box {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%;
             height: 0;
-            overflow: hidden;
         }
 
-        .video-container iframe {
+        .video-box iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             border: 0;
         }
 
-        .portfolio-info {
+        .work-info {
             padding: 24px;
         }
 
-        .portfolio-info span {
+        .work-tag {
+            color: var(--accent-cyan);
             font-size: 0.8rem;
             text-transform: uppercase;
             font-weight: 700;
-            color: var(--text-muted);
             letter-spacing: 1px;
         }
 
-        .portfolio-info h3 {
-            font-family: var(--font-heading);
-            font-size: 1.4rem;
-            margin-top: 6px;
+        .work-info h3 {
+            color: #fff;
+            font-size: 1.25rem;
+            margin: 8px 0;
         }
 
-        /* Contact & Footer */
-        .contact-section {
-            padding: 100px 0;
-            background-color: var(--accent-dark);
-            color: #ffffff;
-            border-radius: 20px;
-            margin-bottom: 60px;
+        .contact-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.15));
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 80px 40px;
             text-align: center;
+            margin-bottom: 80px;
         }
 
-        .contact-section h2 {
-            font-family: var(--font-heading);
-            font-size: 3.5rem;
-            text-transform: uppercase;
+        .contact-box h2 {
+            font-family: var(--font-head);
+            font-size: 3rem;
+            color: #fff;
             margin-bottom: 16px;
         }
 
-        .contact-section p {
-            color: #aaaaaa;
+        .contact-box p {
+            color: var(--text-muted);
             max-width: 600px;
             margin: 0 auto 36px;
             font-size: 1.1rem;
-        }
-
-        .contact-btn {
-            background-color: var(--accent-green);
-            color: var(--accent-dark);
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            display: inline-block;
-            transition: transform 0.3s;
-        }
-
-        .contact-btn:hover {
-            transform: scale(1.05);
         }
 
         footer {
@@ -421,237 +412,191 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive Breakpoints */
         @media (max-width: 992px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-left p {
-                margin: 0 auto 32px;
-            }
-            .hero-center {
-                order: -1;
-            }
-            .services-bar {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .trusted-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .about-section {
-                grid-template-columns: 1fr;
-            }
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .services-bar {
-                grid-template-columns: 1fr;
-            }
-            .trusted-grid {
-                grid-template-columns: 1fr;
-            }
-            .nav-links {
-                display: none; /* Can be expanded to mobile menu */
-            }
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero-left p { margin: 0 auto 36px; }
+            .hero-btns { justify-content: center; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
     <header>
         <div class="container nav-wrapper">
-            <a href="#" class="logo">MOHIBULLAH.</a>
+            <a href="#" class="logo">MOHIBULLAH<span>.</span></a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#clients">Experience</a></li>
+                <li><a href="#portfolio">Works</a></li>
             </ul>
+            <a href="#contact" class="btn-hire">Let's Talk</a>
         </div>
     </header>
 
     <div class="container">
-        <!-- Hero Section (Inspired by Image 2 Layout) -->
-        <section class="hero">
+        <!-- Hero Section -->
+        <section class="hero" id="about">
             <div class="hero-left">
-                <h1>Visual Editor & Content Strategist</h1>
-                <p>Transforming raw footage into high-retention video content, striking thumbnails, and scalable social media growth.</p>
-                <a href="#contact" class="btn-primary">GET IN TOUCH &rarr;</a>
+                <div class="badge"><span></span> Available for Remote Work & Projects</div>
+                <h1>Md Mohibullah Biswas</h1>
+                <p>Visual Storyteller, Video Editor & Tech Specialist. Delivering high-retention YouTube content, CTR-boosting graphics, and technical content automation.</p>
+                <div class="hero-btns">
+                    <a href="#portfolio" class="btn-hire">View Portfolio</a>
+                    <a href="#contact" class="btn-outline">Contact Me</a>
+                </div>
             </div>
-
             <div class="hero-center">
-                <div class="profile-img-container">
-                    <!-- Replace image link below with your picture -->
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" alt="Md Mohibullah Biswas">
-                </div>
-            </div>
-
-            <div class="hero-right-stats">
-                <div class="stat-card">
-                    <div class="number">3+</div>
-                    <div class="label">Years Experience</div>
-                </div>
-                <div class="stat-card">
-                    <div class="number">150+</div>
-                    <div class="label">Videos Delivered</div>
-                </div>
-                <div class="stat-card">
-                    <div class="number">100%</div>
-                    <div class="label">Client Satisfaction</div>
-                </div>
-                <div class="stat-card">
-                    <div class="number">5+</div>
-                    <div class="label">Global Communities</div>
+                <div class="profile-card">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800" alt="Md Mohibullah Biswas">
                 </div>
             </div>
         </section>
 
-        <!-- Services Section (4 Columns) -->
-        <section class="services-bar" id="services">
-            <div class="service-box">
-                <h3>Video Post-Production</h3>
-                <p>High-retention YouTube editing, Shorts/Reels, sound design, and color grading.</p>
+        <!-- Stats Bar -->
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>3+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>150+</h3>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+                <div class="stat-item">
+                    <h3>6+</h3>
+                    <p>Global Communities</p>
+                </div>
             </div>
-            <div class="service-box">
-                <h3>Graphic Design</h3>
-                <p>High CTR thumbnails, banner designs, and complete brand identity graphics.</p>
+        </div>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="section-header">
+                <h2>Multidisciplinary Skillsets</h2>
+                <p>Combining creative storytelling with technical problem-solving.</p>
             </div>
-            <div class="service-box">
-                <h3>Channel Management</h3>
-                <p>YouTube SEO, content strategy, Facebook distribution, and channel analytics.</p>
-            </div>
-            <div class="service-box">
-                <h3>AI & Tech Integration</h3>
-                <p>Python script automation, web presentation, and AI-driven creative workflows.</p>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-video"></i></div>
+                    <h3>Video Post-Production</h3>
+                    <p>High-retention editing for YouTube, Shorts/Reels, sound design, color correction, and smooth motion transitions.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3>Graphic Design & CTR</h3>
+                    <p>Designing high CTR thumbnails, social media branding assets, and visually engaging promotional graphics.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>Social Media Strategy</h3>
+                    <p>Channel growth optimization, YouTube SEO, gaming esports management, and engagement strategy.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+                    <h3>Python & Web Dev</h3>
+                    <p>Automating workflows with Python, building custom frontend experiences with modern HTML/CSS styling.</p>
+                </div>
             </div>
         </section>
 
-        <!-- Trusted By / Communities Section -->
-        <section class="trusted-by">
-            <div class="trusted-header">
-                <h2>Worked With & Communities</h2>
-                <p style="color: var(--text-muted);">Collaborating with gaming, educational, and international partners.</p>
+        <!-- Clients & Communities -->
+        <section class="clients-section" id="clients">
+            <div class="section-header">
+                <h2>Experience & Collaborations</h2>
+                <p>Communities and clients I have had the privilege to work with.</p>
             </div>
-            <div class="trusted-grid">
-                <div class="client-card"><span></span> Efootball Council of Bangladesh</div>
-                <div class="client-card"><span></span> ZIM FF</div>
-                <div class="client-card"><span></span> Sohoj English Academy</div>
-                <div class="client-card"><span></span> Md Imran Hossain (Australia)</div>
-                <div class="client-card"><span></span> River Bolesswar eFC</div>
-                <div class="client-card"><span></span> Global Creators</div>
-            </div>
-        </section>
-
-        <!-- About Me Section -->
-        <section class="about-section" id="about">
-            <div class="about-title">
-                <h2>Crafting Engaged Audiences Through Storytelling</h2>
-            </div>
-            <div class="about-content">
-                <p>Hey, I'm <strong>Md Mohibullah Biswas</strong>. I am a Video Editor, Graphic Designer, Content Strategist, and Educator.</p>
-                <p class="highlight">With hands-on expertise in Python, HTML, and AI workflows, I combine tech efficiency with creative storytelling. My teaching background enables me to present complex ideas simply, while my social media management experience ensures every video is optimized for retention and channel growth.</p>
+            <div class="clients-grid">
+                <div class="client-card"><i class="fa-solid fa-gamepad"></i> Efootball Council of Bangladesh</div>
+                <div class="client-card"><i class="fa-solid fa-fire"></i> ZIM FF</div>
+                <div class="client-card"><i class="fa-solid fa-graduation-cap"></i> Sohoj English Academy</div>
+                <div class="client-card"><i class="fa-solid fa-earth-americas"></i> Global Creator Networks</div>
+                <div class="client-card"><i class="fa-solid fa-trophy"></i> Elite Esports Communities</div>
             </div>
         </section>
 
-        <!-- Filterable Video & Graphic Portfolio -->
+        <!-- Portfolio Showcase -->
         <section class="portfolio-section" id="portfolio">
-            <div class="portfolio-header">
-                <h2>Featured Works</h2>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" onclick="filterPortfolio('all')">All</button>
-                    <button class="filter-btn" onclick="filterPortfolio('youtube')">YouTube Long</button>
-                    <button class="filter-btn" onclick="filterPortfolio('shorts')">Shorts / Reels</button>
-                    <button class="filter-btn" onclick="filterPortfolio('graphics')">Graphics & Thumbnails</button>
-                </div>
+            <div class="section-header">
+                <h2>Featured Portfolio Works</h2>
+                <p>Explore recent editing, graphic design, and content projects.</p>
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterPortfolio('all')">All Works</button>
+                <button class="filter-btn" onclick="filterPortfolio('youtube')">YouTube Editing</button>
+                <button class="filter-btn" onclick="filterPortfolio('shorts')">Shorts & Reels</button>
+                <button class="filter-btn" onclick="filterPortfolio('graphics')">Graphics & Designs</button>
             </div>
 
             <div class="portfolio-grid">
-                <!-- Video Item 1 (YouTube) -->
-                <div class="portfolio-item youtube">
-                    <div class="video-container">
-                        <!-- Replace src with your YouTube embed link -->
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allowfullscreen></iframe>
+                <!-- Video Item 1 -->
+                <div class="work-card youtube">
+                    <div class="video-box">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube Video" allowfullscreen></iframe>
                     </div>
-                    <div class="portfolio-info">
-                        <span>YouTube Long-Form</span>
-                        <h3>Esports Highlights & Documentary Editing</h3>
-                    </div>
-                </div>
-
-                <!-- Video Item 2 (Shorts) -->
-                <div class="portfolio-item shorts">
-                    <div class="video-container">
-                        <!-- Replace src with your Shorts embed link -->
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Shorts video player" allowfullscreen></iframe>
-                    </div>
-                    <div class="portfolio-info">
-                        <span>Shorts / Vertical Video</span>
-                        <h3>High-Retention Reels & Tech Short</h3>
+                    <div class="work-info">
+                        <span class="work-tag">YouTube Editing</span>
+                        <h3>Esports Highlights & Content Showcase</h3>
                     </div>
                 </div>
 
-                <!-- Graphic Item (Thumbnail Example) -->
-                <div class="portfolio-item graphics">
-                    <div style="height: 240px; overflow: hidden; background: #ccc;">
+                <!-- Video Item 2 -->
+                <div class="work-card shorts">
+                    <div class="video-box">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Shorts Video" allowfullscreen></iframe>
+                    </div>
+                    <div class="work-info">
+                        <span class="work-tag">Shorts / Vertical</span>
+                        <h3>Fast-Paced Motion Graphics Reel</h3>
+                    </div>
+                </div>
+
+                <!-- Graphic Item -->
+                <div class="work-card graphics">
+                    <div style="height: 220px; overflow: hidden; background: #1f2937;">
                         <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" alt="Thumbnail Design" style="width:100%; height:100%; object-fit:cover;">
                     </div>
-                    <div class="portfolio-info">
-                        <span>Graphic Design</span>
-                        <h3>High-CTR Gaming & Tech Thumbnails</h3>
-                    </div>
-                </div>
-
-                <!-- Video Item 3 (YouTube) -->
-                <div class="portfolio-item youtube">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allowfullscreen></iframe>
-                    </div>
-                    <div class="portfolio-info">
-                        <span>Educational Content</span>
-                        <h3>English Learning Tutorial Series</h3>
+                    <div class="work-info">
+                        <span class="work-tag">Graphic Design</span>
+                        <h3>High CTR Gaming & Promotional Assets</h3>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Call to Action / Contact -->
-        <section class="contact-section" id="contact">
-            <h2>Let's Work Together</h2>
-            <p>Need high-quality video edits, CTR-boosting thumbnails, or full channel management? Let's discuss your project.</p>
-            <a href="mailto:your-email@gmail.com" class="contact-btn">Send Me an Email &rarr;</a>
+        <!-- Contact CTA -->
+        <section class="contact-box" id="contact">
+            <h2>Ready to Elevate Your Content?</h2>
+            <p>Whether you need top-tier video editing, eye-catching thumbnails, or complete channel growth strategy, let's connect!</p>
+            <a href="mailto:your-email@gmail.com" class="btn-hire" style="font-size: 1.1rem; padding: 16px 36px;">Send Me an Email</a>
         </section>
 
-        <!-- Footer -->
         <footer>
             <p>&copy; 2026 Md Mohibullah Biswas. All rights reserved.</p>
-            <p>Built for GitHub Pages</p>
+            <p>Designed for High Retention & Conversion</p>
         </footer>
     </div>
 
-    <!-- JavaScript for Dynamic Filtering -->
     <script>
         function filterPortfolio(category) {
-            // Update active button
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
-            // Filter items
-            const items = document.querySelectorAll('.portfolio-item');
+            const items = document.querySelectorAll('.work-card');
             items.forEach(item => {
-                if (category === 'all') {
+                if (category === 'all' || item.classList.contains(category)) {
                     item.style.display = 'block';
                 } else {
-                    if (item.classList.contains(category)) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
+                    item.style.display = 'none';
                 }
             });
         }
