@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md Mohibullah Biswas | Digital Creator & Strategist</title>
+    <title>Md Mohibullah Biswas | Digital Creator & Portfolio</title>
     <!-- Modern Google Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,17 +40,17 @@
         /* Background Animated Glowing Orbs */
         .glow-orb {
             position: absolute;
-            width: 400px;
-            height: 400px;
+            width: 450px;
+            height: 450px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,242,254,0.15) 0%, rgba(0,0,0,0) 70%);
-            filter: blur(80px);
+            background: radial-gradient(circle, rgba(0,242,254,0.12) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(90px);
             z-index: -1;
             pointer-events: none;
         }
 
         .orb-1 { top: -100px; left: -100px; }
-        .orb-2 { top: 40%; right: -100px; background: radial-gradient(circle, rgba(127,0,255,0.15) 0%, rgba(0,0,0,0) 70%); }
+        .orb-2 { top: 45%; right: -100px; background: radial-gradient(circle, rgba(127,0,255,0.12) 0%, rgba(0,0,0,0) 70%); }
 
         /* 1. Ultra-Modern Floating Pill Header */
         header {
@@ -60,7 +60,7 @@
             transform: translateX(-50%);
             width: 90%;
             max-width: 1100px;
-            background: rgba(15, 23, 42, 0.65);
+            background: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--card-border);
@@ -105,13 +105,14 @@
         .btn-header {
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
             color: #000;
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 700;
             text-decoration: none;
             transition: all 0.3s ease;
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+            display: inline-block;
         }
 
         .btn-header:hover {
@@ -119,20 +120,23 @@
             box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
         }
 
-        /* 2. Sleek Hero Section */
+        /* 2. Hero Section with Portrait Image Frame */
         .hero {
             position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 120px 24px 60px;
-            text-align: center;
+            padding: 140px 24px 80px;
         }
 
-        .hero-container {
-            max-width: 900px;
-            z-index: 2;
+        .hero-grid {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
         }
 
         .badge-pill {
@@ -150,7 +154,7 @@
 
         .hero-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 24px;
@@ -161,24 +165,35 @@
         }
 
         .hero-subtitle {
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             color: var(--text-muted);
-            max-width: 650px;
-            margin: 0 auto 36px;
             line-height: 1.6;
+            margin-bottom: 36px;
         }
 
-        .hero-btns {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
+        .hero-img-box {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
         }
 
-        /* 3. Modern Grid & Section Cards */
+        .hero-img-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(20%) contrast(110%);
+        }
+
+        /* 3. Common Section Layout */
         .section-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 100px 24px;
+            padding: 80px 24px;
         }
 
         .section-tag {
@@ -193,13 +208,13 @@
 
         .section-heading {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             font-weight: 700;
             margin-bottom: 48px;
             letter-spacing: -1px;
         }
 
-        /* Features Grid */
+        /* Capabilities Grid */
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -213,8 +228,6 @@
             padding: 32px 24px;
             backdrop-filter: blur(10px);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
         }
 
         .glass-card:hover {
@@ -241,7 +254,7 @@
             line-height: 1.5;
         }
 
-        /* 4. Trusted By Section */
+        /* 4. Trusted Partners Section */
         .logo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -264,27 +277,49 @@
             transition: all 0.3s ease;
         }
 
-        .partner-box i {
-            color: var(--accent-blue);
-        }
+        .partner-box i { color: var(--accent-blue); }
 
         .partner-box:hover {
             background: rgba(255, 255, 255, 0.06);
-            border-color: var(--accent-blue);
+            border-color: var(--accent-cyan);
             transform: scale(1.02);
         }
 
-        /* 5. Services Stack */
+        /* 5. Statement Section */
+        .statement-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 60px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .statement-left h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            line-height: 1.2;
+        }
+
+        .statement-right p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* 6. Services Stack */
         .services-stack {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
 
         .service-row {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            padding: 32px;
+            padding: 28px 32px;
             border-radius: 16px;
             display: grid;
             grid-template-columns: 80px 1fr 2fr;
@@ -305,7 +340,89 @@
             color: var(--accent-cyan);
         }
 
-        /* 6. Contact Form */
+        /* 7. Portfolio Showcase */
+        .portfolio-card {
+            width: 100%;
+            height: 520px;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        .portfolio-card iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* 8. Client Testimonials */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 36px;
+        }
+
+        .testimonial-card p {
+            color: #e2e8f0;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .client-info h5 {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .client-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* 9. FAQ Accordion */
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            padding: 20px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 150px;
+            margin-top: 14px;
+        }
+
+        /* 10. Contact Form */
         .contact-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -319,7 +436,7 @@
         .form-input {
             width: 100%;
             padding: 16px 20px;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--card-border);
             border-radius: 10px;
             color: #fff;
@@ -342,11 +459,11 @@
             font-size: 0.85rem;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+            .hero-grid, .statement-box, .contact-wrapper, .testimonial-grid { grid-template-columns: 1fr; }
             .hero-title { font-size: 2.5rem; }
             .nav-links { display: none; }
-            .service-row { grid-template-columns: 1fr; gap: 12px; }
-            .contact-wrapper { grid-template-columns: 1fr; padding: 24px; }
+            .service-row { grid-template-columns: 1fr; gap: 8px; }
         }
     </style>
 </head>
@@ -355,28 +472,32 @@
     <div class="glow-orb orb-1"></div>
     <div class="glow-orb orb-2"></div>
 
-    <!-- 1. Ultra-Modern Floating Pill Header -->
+    <!-- 1. Floating Header -->
     <header>
         <div class="logo">MOHIBULLAH.</div>
         <ul class="nav-links">
             <li><a href="#about" class="nav-link">About</a></li>
             <li><a href="#services" class="nav-link">Services</a></li>
             <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+            <li><a href="#faq" class="nav-link">FAQ</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
         <a href="#contact" class="btn-header">Let's Talk</a>
     </header>
 
-    <!-- 2. Hero Section -->
+    <!-- 2. Hero Section (With Portrait Image) -->
     <section class="hero" id="about">
-        <div class="hero-container">
-            <div class="badge-pill">
-                <i class="fa-solid fa-bolt"></i> High-Retention Digital Strategist
+        <div class="hero-grid">
+            <div>
+                <div class="badge-pill">
+                    <i class="fa-solid fa-bolt"></i> Digital Creator & Strategist
+                </div>
+                <h1 class="hero-title">Crafting Visual Stories That Engage & Convert</h1>
+                <p class="hero-subtitle">Specializing in high-retention video post-production, motion graphics, and click-driven visual branding designed for creators and brands.</p>
+                <a href="#contact" class="btn-header" style="padding: 14px 32px;">Start a Project</a>
             </div>
-            <h1 class="hero-title">Crafting Visual Stories That Convert & Engage</h1>
-            <p class="hero-subtitle">High-retention video post-production, motion graphics, and click-driven visual branding designed for digital creators and brands.</p>
-            <div class="hero-btns">
-                <a href="#portfolio" class="btn-header" style="padding: 14px 32px;">Explore Works</a>
+            <div class="hero-img-box">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000" alt="Md Mohibullah Biswas">
             </div>
         </div>
     </section>
@@ -384,32 +505,32 @@
     <!-- 3. Key Capabilities -->
     <section class="section-container">
         <span class="section-tag">Capabilities</span>
-        <h2 class="section-heading">High-Impact Digital Solutions</h2>
+        <h2 class="section-heading">High-Impact Solutions</h2>
         <div class="grid-4">
             <div class="glass-card">
                 <i class="fa-solid fa-video card-icon"></i>
                 <h3>High-Retention Editing</h3>
-                <p>Dynamic cuts, narrative pacing, and sound design engineered to maximize watch time.</p>
+                <p>Dynamic cuts, narrative pacing, and sound engineering designed to boost watch time.</p>
             </div>
             <div class="glass-card">
                 <i class="fa-solid fa-wand-magic-sparkles card-icon"></i>
                 <h3>Brand Identity</h3>
-                <p>Modern visual branding kits and thumbnail designs that drive high CTRs.</p>
+                <p>Modern visual branding kits and high CTR thumbnail graphics.</p>
             </div>
             <div class="glass-card">
                 <i class="fa-solid fa-gamepad card-icon"></i>
                 <h3>Esports Media</h3>
-                <p>Professional esports banners, tournament promos, and highlight editing.</p>
+                <p>Professional esports banners, tournament promos, and highlight edits.</p>
             </div>
             <div class="glass-card">
                 <i class="fa-solid fa-code card-icon"></i>
                 <h3>Workflow Automation</h3>
-                <p>Python-powered custom automation to streamline media creation pipelines.</p>
+                <p>Custom Python automation scripts to streamline video production workflows.</p>
             </div>
         </div>
     </section>
 
-    <!-- 4. Trusted Partners Section -->
+    <!-- 4. Trusted Industry Partners -->
     <section class="section-container">
         <span class="section-tag">Network</span>
         <h2 class="section-heading">Trusted Industry Partners</h2>
@@ -421,7 +542,19 @@
         </div>
     </section>
 
-    <!-- 5. Services Section -->
+    <!-- 5. Big Statement Section -->
+    <section class="section-container">
+        <div class="statement-box">
+            <div class="statement-left">
+                <h2>CRAFTING HIGH-RETENTION MEDIA & INTUITIVE DESIGNS</h2>
+            </div>
+            <div class="statement-right">
+                <p>I convert raw video assets into engaging narrative stories. By focusing on retention metrics, aesthetic visual thumbnails, and clean automated systems, I help creators and brands stand out in crowded feeds.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Services Section -->
     <section class="section-container" id="services">
         <span class="section-tag">Services</span>
         <h2 class="section-heading">What I Deliver</h2>
@@ -429,28 +562,73 @@
             <div class="service-row">
                 <span class="service-num">01</span>
                 <h3>Video Post-Production</h3>
-                <p>YouTube long-form, Shorts, esports edits, color grading, and immersive audio design.</p>
+                <p>YouTube long-form, Shorts, esports edits, motion graphics, and audio engineering.</p>
             </div>
             <div class="service-row">
                 <span class="service-num">02</span>
-                <h3>Visual Design</h3>
-                <p>Click-driven thumbnails, esports graphics kits, and social media visual assets.</p>
+                <h3>Thumbnail & Graphic Design</h3>
+                <p>Click-driven thumbnails, social media branding kits, and esports banners.</p>
             </div>
             <div class="service-row">
                 <span class="service-num">03</span>
-                <h3>Tech Automation</h3>
-                <p>Custom Python script integrations to optimize media and workflow processing.</p>
+                <h3>Automation & Tech Support</h3>
+                <p>Python script integrations to optimize media processing workflows.</p>
             </div>
         </div>
     </section>
 
-    <!-- 6. Interactive Contact Form -->
+    <!-- 7. Portfolio Showcase -->
+    <section class="section-container" id="portfolio">
+        <span class="section-tag">Portfolio</span>
+        <h2 class="section-heading">Featured Showcase</h2>
+        <div class="portfolio-card">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Featured Work" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- 8. Client Testimonials -->
+    <section class="section-container">
+        <span class="section-tag">Reviews</span>
+        <h2 class="section-heading">Client Feedback</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p>"Mohibullah's video editing turned our content into high-retention masterpieces. Exceptional attention to visual pacing and sound design!"</p>
+                <div class="client-info">
+                    <h5>Md Imran Hossain</h5>
+                    <span>Media Client (Australia)</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Top-tier esports graphics and video assets. Reliable, punctual, and knows exactly what the audience wants."</p>
+                <div class="client-info">
+                    <h5>Efootball Council BD</h5>
+                    <span>Esports Partner</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FAQ Section -->
+    <section class="section-container" id="faq">
+        <span class="section-tag">FAQ</span>
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-question">What software do you use for post-production? <i class="fa-solid fa-plus"></i></div>
+            <div class="faq-answer">I work with Premiere Pro, After Effects, Photoshop, and Lightroom to deliver industry-standard high-definition media.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What is your typical project turnaround time? <i class="fa-solid fa-plus"></i></div>
+            <div class="faq-answer">Short-form videos take 24-48 hours. Long-form videos and full visual kits usually take 3 to 5 business days depending on complexity.</div>
+        </div>
+    </section>
+
+    <!-- 10. Interactive Contact Form -->
     <section class="section-container" id="contact">
         <div class="contact-wrapper">
             <div>
                 <span class="section-tag">Connect</span>
                 <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 16px;">Let's Build Something Great</h2>
-                <p style="color: var(--text-muted); line-height: 1.6;">Have a project in mind or need high-end video editing? Send a message to start immediately.</p>
+                <p style="color: var(--text-muted); line-height: 1.6;">Have a project in mind or need high-end video editing? Send a message to get started immediately.</p>
             </div>
             <form>
                 <input type="text" placeholder="Your Name" class="form-input" required>
@@ -465,5 +643,21 @@
         <p>&copy; 2026 Md Mohibullah Biswas. All rights reserved.</p>
     </footer>
 
+    <script>
+        // Interactive FAQ Accordion
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+                const icon = item.querySelector('.faq-question i');
+                if(item.classList.contains('active')) {
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus');
+                } else {
+                    icon.classList.remove('fa-minus');
+                    icon.classList.add('fa-plus');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
