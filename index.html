@@ -23,6 +23,7 @@
             color: #1a1a1a;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            perspective: 1000px; /* Enable 3D Space */
         }
 
         /* 1. Header Navigation */
@@ -30,8 +31,8 @@
             position: sticky;
             top: 0;
             width: 100%;
-            background: rgba(220, 220, 214, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(220, 220, 214, 0.9);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid #c8c8c2;
             z-index: 100;
         }
@@ -55,6 +56,7 @@
             width: 22px;
             height: 2px;
             background-color: #1a1a1a;
+            transition: transform 0.3s ease;
         }
 
         .nav-item {
@@ -69,12 +71,15 @@
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
 
-        .nav-item:hover { background: #d0d0ca; }
+        .nav-item:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
 
-        /* 2. Hero Section (Image 1 Editorial Style) */
+        /* 2. Hero Section (3D Parallax Space) */
         .hero {
             position: relative;
             min-height: calc(100vh - 60px);
@@ -83,6 +88,7 @@
             justify-content: center;
             padding: 40px 24px;
             overflow: hidden;
+            transform-style: preserve-3d;
         }
 
         .hero-title-bg {
@@ -98,6 +104,7 @@
             z-index: 1;
             pointer-events: none;
             white-space: nowrap;
+            transition: transform 0.1s ease-out;
         }
 
         .title-part {
@@ -107,6 +114,7 @@
             color: #1a1a1a;
             letter-spacing: -2px;
             line-height: 1;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.05);
         }
 
         .hero-image-wrapper {
@@ -116,6 +124,8 @@
             width: 75%;
             margin: 0 auto;
             pointer-events: none;
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
         }
 
         .hero-image-wrapper img {
@@ -124,6 +134,7 @@
             display: block;
             mix-blend-mode: multiply;
             filter: grayscale(100%) contrast(120%);
+            drop-shadow: 0px 20px 30px rgba(0,0,0,0.15);
         }
 
         .hero-content-left {
@@ -153,10 +164,14 @@
             text-transform: uppercase;
             border: none;
             cursor: pointer;
-            transition: opacity 0.3s;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(75, 107, 117, 0.2);
         }
 
-        .btn-editorial:hover { opacity: 0.9; }
+        .btn-editorial:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(75, 107, 117, 0.4);
+        }
 
         .hero-content-right {
             position: absolute;
@@ -181,6 +196,18 @@
             color: #1a1a1a;
         }
 
+        /* Scroll Reveal Animation Trigger */
+        .reveal-3d {
+            opacity: 0;
+            transform: translateY(50px) rotateX(-10deg);
+            transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .reveal-3d.active {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
         /* 3. Sub-Features Grid */
         .sub-features {
             border-top: 1px solid #c8c8c2;
@@ -197,6 +224,15 @@
             padding: 0 24px;
         }
 
+        .feature-item {
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
         .feature-item h4 {
             font-size: 0.75rem;
             font-weight: 800;
@@ -211,7 +247,7 @@
             line-height: 1.4;
         }
 
-        /* 4. Trusted By Section (Real Partners Added) */
+        /* 4. Trusted By Section */
         .trusted-section {
             padding: 80px 24px;
             max-width: 1300px;
@@ -253,6 +289,14 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .logo-box:hover {
+            background: #ffffff;
+            transform: translateZ(20px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            z-index: 5;
         }
 
         /* 5. Statement Section */
@@ -312,10 +356,18 @@
 
         .service-list-item {
             border-bottom: 1px solid #c8c8c2;
-            padding: 30px 0;
+            padding: 30px 20px;
             display: grid;
             grid-template-columns: 80px 1fr 2fr;
             align-items: center;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .service-list-item:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.01) translateZ(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
         .service-number {
@@ -349,6 +401,12 @@
             border-radius: 4px;
             overflow: hidden;
             margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-large-card:hover {
+            transform: scale(1.01);
         }
 
         .portfolio-large-card iframe {
@@ -357,7 +415,7 @@
             border: 0;
         }
 
-        /* 8. Testimonials Section */
+        /* 8. Testimonials Section (3D Tilt Effect) */
         .testimonials-section {
             padding: 80px 24px;
             max-width: 1300px;
@@ -372,9 +430,11 @@
         }
 
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.5);
             border: 1px solid #c8c8c2;
             padding: 40px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transform-style: preserve-3d;
         }
 
         .testimonial-card p {
@@ -408,6 +468,11 @@
             border-bottom: 1px solid #c8c8c2;
             padding: 24px 0;
             cursor: pointer;
+            transition: padding 0.3s ease;
+        }
+
+        .faq-item:hover {
+            padding-left: 10px;
         }
 
         .faq-question {
@@ -421,7 +486,7 @@
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            transition: max-height 0.4s ease, margin-top 0.4s ease;
             font-size: 0.95rem;
             color: #555550;
             line-height: 1.6;
@@ -433,7 +498,7 @@
             margin-top: 14px;
         }
 
-        /* 10. Contact Section with Form */
+        /* 10. Interactive Contact Section */
         .contact-section {
             padding: 100px 24px;
             max-width: 1300px;
@@ -465,16 +530,19 @@
         .form-group input, .form-group textarea {
             width: 100%;
             padding: 16px;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.6);
             border: 1px solid #c8c8c2;
             font-family: inherit;
             font-size: 0.9rem;
             outline: none;
+            transition: all 0.3s ease;
         }
 
         .form-group input:focus, .form-group textarea:focus {
             border-color: #4b6b75;
             background: #ffffff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
         }
 
         footer {
@@ -485,7 +553,6 @@
             color: #666660;
         }
 
-        /* Mobile Responsiveness */
         @media (max-width: 900px) {
             .nav-wrapper { grid-template-columns: 60px repeat(2, 1fr); }
             .nav-item:nth-child(n+4) { display: none; }
@@ -517,14 +584,14 @@
         </div>
     </header>
 
-    <!-- 2. Hero Section -->
+    <!-- 2. Hero Section with 3D Mouse Parallax -->
     <section class="hero" id="about">
-        <div class="hero-title-bg">
+        <div class="hero-title-bg" id="parallax-bg">
             <span class="title-part">MOHIB</span>
             <span class="title-part">ULLAH</span>
         </div>
 
-        <div class="hero-image-wrapper">
+        <div class="hero-image-wrapper" id="parallax-img">
             <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000" alt="Md Mohibullah Biswas">
         </div>
 
@@ -539,7 +606,7 @@
     </section>
 
     <!-- 3. Sub-Features Grid -->
-    <section class="sub-features">
+    <section class="sub-features reveal-3d">
         <div class="features-grid">
             <div class="feature-item">
                 <h4>HIGH-RETENTION EDITING</h4>
@@ -560,8 +627,8 @@
         </div>
     </section>
 
-    <!-- 4. Trusted By Section (Correct Real Partners) -->
-    <section class="trusted-section">
+    <!-- 4. Trusted By Section -->
+    <section class="trusted-section reveal-3d">
         <div class="trusted-header">
             <h3>TRUSTED BY INDUSTRY PARTNERS</h3>
             <p>01 / COLLABORATIONS</p>
@@ -575,7 +642,7 @@
     </section>
 
     <!-- 5. Big Typography About Statement -->
-    <section class="statement-section">
+    <section class="statement-section reveal-3d">
         <div class="statement-left">
             <h2>CRAFTING HIGH-RETENTION MEDIA & INTUITIVE DESIGNS</h2>
         </div>
@@ -586,7 +653,7 @@
     </section>
 
     <!-- 6. Services Section -->
-    <section class="services-section" id="services">
+    <section class="services-section reveal-3d" id="services">
         <div class="section-header">
             <h2>WHAT I DO</h2>
             <span>02 / SERVICES</span>
@@ -610,7 +677,7 @@
     </section>
 
     <!-- 7. Portfolio Showcase Section -->
-    <section class="portfolio-section" id="portfolio">
+    <section class="portfolio-section reveal-3d" id="portfolio">
         <div class="section-header">
             <h2>FEATURED WORK</h2>
             <span>03 / PORTFOLIO</span>
@@ -621,20 +688,20 @@
     </section>
 
     <!-- 8. Testimonials Section -->
-    <section class="testimonials-section">
+    <section class="testimonials-section reveal-3d">
         <div class="section-header">
             <h2>CLIENT FEEDBACK</h2>
             <span>04 / REVIEWS</span>
         </div>
         <div class="testimonial-grid">
-            <div class="testimonial-card">
+            <div class="testimonial-card tilt-card">
                 <p>"Mohibullah's video editing turned our raw content into high-retention masterpieces. Exceptional attention to visual pacing and sound!"</p>
                 <div class="client-info">
                     <h5>Md Imran Hossain</h5>
                     <span>Media Client (Australia)</span>
                 </div>
             </div>
-            <div class="testimonial-card">
+            <div class="testimonial-card tilt-card">
                 <p>"Top-tier esports media graphics and video assets. Reliable, punctual, and knows exactly what the audience wants."</p>
                 <div class="client-info">
                     <h5>Efootball Council BD</h5>
@@ -645,7 +712,7 @@
     </section>
 
     <!-- 9. FAQ Section -->
-    <section class="faq-section">
+    <section class="faq-section reveal-3d">
         <div class="section-header">
             <h2>FREQUENTLY ASKED</h2>
             <span>05 / FAQ</span>
@@ -662,7 +729,7 @@
     </section>
 
     <!-- 10. Interactive Contact Section -->
-    <section class="contact-section" id="contact">
+    <section class="contact-section reveal-3d" id="contact">
         <div class="contact-left">
             <h2>LET'S BUILD SOMETHING EXTRAORDINARY</h2>
             <p>Ready to level up your video content or brand identity? Send a message and let's get started immediately.</p>
@@ -686,7 +753,61 @@
     </footer>
 
     <script>
-        // Interactive FAQ Accordion
+        // 1. 3D Parallax Mouse Move Effect on Hero Section
+        const hero = document.querySelector('.hero');
+        const parallaxBg = document.getElementById('parallax-bg');
+        const parallaxImg = document.getElementById('parallax-img');
+
+        hero.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const xPos = (clientX / window.innerWidth - 0.5) * 40;
+            const yPos = (clientY / window.innerHeight - 0.5) * 40;
+
+            // Deep 3D Movement Difference
+            parallaxBg.style.transform = `translate(calc(-50% + ${xPos * 0.5}px), calc(-50% + ${yPos * 0.5}px))`;
+            parallaxImg.style.transform = `translate3d(${xPos * -0.8}px, ${yPos * -0.8}px, 30px) rotateY(${xPos * 0.2}deg)`;
+        });
+
+        hero.addEventListener('mouseleave', () => {
+            parallaxBg.style.transform = `translate(-50%, -50%)`;
+            parallaxImg.style.transform = `translate3d(0, 0, 0) rotateY(0deg)`;
+        });
+
+        // 2. 3D Tilt Card Effect for Testimonials
+        const tiltCards = document.querySelectorAll('.tilt-card');
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = ((y - centerY) / centerY) * -12;
+                const rotateY = ((x - centerX) / centerX) * 12;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(15px)`;
+                card.style.boxShadow = `0 20px 40px rgba(0,0,0,0.1)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
+                card.style.boxShadow = `none`;
+            });
+        });
+
+        // 3. Scroll Triggered 3D Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal-3d').forEach(el => observer.observe(el));
+
+        // 4. Interactive FAQ Accordion
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', () => {
                 item.classList.toggle('active');
