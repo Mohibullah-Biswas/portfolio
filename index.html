@@ -7,7 +7,7 @@
     <!-- Google Fonts & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- 3D & Animation Libraries -->
@@ -16,6 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
+        /* Light / Dark Mode Color Variables */
         :root {
             --bg-color: #f8fafc;
             --card-bg: rgba(255, 255, 255, 0.85);
@@ -25,6 +26,21 @@
             --text-main: #0f172a;
             --text-muted: #64748b;
             --shadow-lg: 0 20px 30px -10px rgba(0, 0, 0, 0.08);
+            --header-bg: rgba(255, 255, 255, 0.75);
+            --input-bg: #f8fafc;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(15, 23, 42, 0.75);
+            --card-border: rgba(51, 65, 85, 0.8);
+            --accent-primary: #3b82f6;
+            --accent-indigo: #6366f1;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --shadow-lg: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+            --header-bg: rgba(15, 23, 42, 0.8);
+            --input-bg: #1e293b;
         }
 
         * {
@@ -39,6 +55,7 @@
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         /* 3D WebGL Canvas Background */
@@ -52,7 +69,7 @@
             pointer-events: none;
         }
 
-        /* Floating Pill Header */
+        /* Header */
         header {
             position: fixed;
             top: 20px;
@@ -60,7 +77,7 @@
             transform: translateX(-50%);
             width: 90%;
             max-width: 1100px;
-            background: rgba(255, 255, 255, 0.75);
+            background: var(--header-bg);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--card-border);
@@ -71,6 +88,7 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: background 0.4s ease;
         }
 
         .logo {
@@ -98,6 +116,33 @@
 
         .nav-link:hover { color: var(--accent-primary); }
 
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
         .btn-header {
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-indigo));
             color: #ffffff;
@@ -116,7 +161,7 @@
             box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
         }
 
-        /* Hero Section with 3D Card Setup */
+        /* 2. Transparent Cutout Oversized Hero Section (Reference Style) */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -124,15 +169,40 @@
             align-items: center;
             justify-content: center;
             padding: 140px 24px 60px;
+            overflow: hidden;
         }
 
-        .hero-grid {
+        .hero-container {
             max-width: 1200px;
             width: 100%;
+            position: relative;
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 50px;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
+            min-height: 80vh;
+        }
+
+        .hero-text-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Giant Background Typography overlapping behind cutout PNG */
+        .giant-bg-text {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(4rem, 15vw, 13rem);
+            font-weight: 800;
+            color: var(--text-main);
+            opacity: 0.08;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 1;
+            letter-spacing: -4px;
+            text-transform: uppercase;
         }
 
         .badge-pill {
@@ -141,8 +211,8 @@
             gap: 8px;
             padding: 6px 16px;
             border-radius: 50px;
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.3);
             font-size: 0.8rem;
             font-weight: 600;
             color: var(--accent-primary);
@@ -151,9 +221,9 @@
 
         .hero-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 3.2rem;
-            font-weight: 700;
-            line-height: 1.15;
+            font-size: clamp(2.5rem, 4vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.1;
             margin-bottom: 18px;
             letter-spacing: -1.5px;
             color: var(--text-main);
@@ -164,14 +234,41 @@
             color: var(--text-muted);
             line-height: 1.6;
             margin-bottom: 28px;
+            max-width: 480px;
         }
 
-        /* Stats Grid */
+        /* Oversized Transparent PNG Portrait Box */
+        .hero-cutout-wrapper {
+            position: absolute;
+            right: -20px;
+            bottom: -60px;
+            width: 620px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .hero-cutout-img {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+            pointer-events: auto;
+        }
+
+        /* Hero Stats Grid */
         .hero-stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 14px;
-            margin-top: 24px;
+            margin-top: 30px;
+            max-width: 480px;
+            position: relative;
+            z-index: 4;
         }
 
         .hero-stat-card {
@@ -179,7 +276,7 @@
             border: 1px solid var(--card-border);
             border-radius: 14px;
             padding: 16px 20px;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.03);
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
@@ -209,22 +306,6 @@
             transition: transform 0.1s ease-out;
         }
 
-        .hero-img-box {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid var(--card-border);
-            background: #ffffff;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .hero-img-box img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
         /* Layout Sections */
         .section-container {
             max-width: 1200px;
@@ -251,7 +332,7 @@
             letter-spacing: -1px;
         }
 
-        /* Glass Cards */
+        /* Cards & Services */
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -279,7 +360,6 @@
             margin-bottom: 18px;
         }
 
-        /* Partners Grid */
         .logo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -309,9 +389,8 @@
             transform: translateY(-2px);
         }
 
-        /* Statement Box */
         .statement-box {
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 24px;
             padding: 50px 40px;
@@ -322,7 +401,6 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* Services Stack */
         .services-stack { display: flex; flex-direction: column; gap: 16px; }
 
         .service-row {
@@ -349,7 +427,6 @@
             color: var(--accent-primary);
         }
 
-        /* Portfolio Card */
         .portfolio-card {
             width: 100%;
             height: 500px;
@@ -362,7 +439,6 @@
 
         .portfolio-card iframe { width: 100%; height: 100%; border: 0; }
 
-        /* Testimonials */
         .testimonial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
         .testimonial-card {
@@ -373,7 +449,6 @@
             backdrop-filter: blur(8px);
         }
 
-        /* FAQ Accordion */
         .faq-item {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -396,12 +471,11 @@
 
         .faq-item.active .faq-answer { max-height: 150px; margin-top: 12px; }
 
-        /* Contact Wrapper */
         .contact-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 24px;
             padding: 48px;
@@ -412,9 +486,10 @@
         .form-input {
             width: 100%;
             padding: 14px 18px;
-            background: #f8fafc;
+            background: var(--input-bg);
             border: 1px solid var(--card-border);
             border-radius: 10px;
+            color: var(--text-main);
             outline: none;
             margin-bottom: 16px;
             transition: all 0.3s ease;
@@ -422,7 +497,6 @@
 
         .form-input:focus {
             border-color: var(--accent-primary);
-            background: #fff;
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
@@ -432,12 +506,14 @@
             border-top: 1px solid var(--card-border);
             color: var(--text-muted);
             font-size: 0.85rem;
-            background: rgba(255, 255, 255, 0.8);
+            background: var(--card-bg);
         }
 
-        @media (max-width: 900px) {
-            .hero-grid, .statement-box, .contact-wrapper, .testimonial-grid { grid-template-columns: 1fr; }
-            .hero-title { font-size: 2.4rem; }
+        @media (max-width: 992px) {
+            .hero-container { grid-template-columns: 1fr; }
+            .hero-cutout-wrapper { position: relative; right: 0; bottom: 0; width: 100%; height: 400px; margin-top: 20px; }
+            .giant-bg-text { display: none; }
+            .statement-box, .contact-wrapper, .testimonial-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
             .service-row { grid-template-columns: 1fr; gap: 8px; }
         }
@@ -448,7 +524,7 @@
     <!-- 3D Canvas Background -->
     <canvas id="webgl-bg"></canvas>
 
-    <!-- Header -->
+    <!-- Header with Night Mode Toggle -->
     <header>
         <div class="logo">MOHIBULLAH<span>.</span></div>
         <ul class="nav-links">
@@ -458,17 +534,26 @@
             <li><a href="#partners" class="nav-link">Partners</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
-        <a href="#contact" class="btn-header">Let's Talk</a>
+        <div class="header-controls">
+            <!-- Theme Switcher Button -->
+            <button class="theme-toggle-btn" id="themeToggle" title="Toggle Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <a href="#contact" class="btn-header">Let's Talk</a>
+        </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Oversized Transparent Cutout PNG -->
     <section class="hero" id="about">
-        <div class="hero-grid">
-            <div class="gsap-hero-text">
+        <!-- Giant Background Overlay Typography -->
+        <div class="giant-bg-text">MOHIBULLAH</div>
+
+        <div class="hero-container">
+            <div class="hero-text-content gsap-hero-text">
                 <div class="badge-pill">
                     <i class="fa-solid fa-bolt"></i> Digital Creator & Strategist
                 </div>
-                <h1 class="hero-title">Crafting Visual Stories That Engage & Convert</h1>
+                <h1 class="hero-title">Crafting Visual Stories That Engage</h1>
                 <p class="hero-subtitle">High-retention video post-production, motion graphics, and click-driven visual branding engineered for digital creators and brands.</p>
                 
                 <a href="#contact" class="btn-header" style="padding: 12px 28px;">Start a Project</a>
@@ -494,8 +579,9 @@
                 </div>
             </div>
 
-            <div class="tilt-card hero-img-box gsap-hero-img">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000" alt="Md Mohibullah Biswas">
+            <!-- Transparent Cutout Big Hero Portrait (Reference Style) -->
+            <div class="hero-cutout-wrapper gsap-hero-img">
+                <img src="https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-in-shirt-png-image_13146332.png" alt="Md Mohibullah Biswas Cutout Portrait" class="hero-cutout-img tilt-card">
             </div>
         </div>
     </section>
@@ -641,9 +727,24 @@
         <p>&copy; 2026 Md Mohibullah Biswas. All rights reserved.</p>
     </footer>
 
-    <!-- 3D & Interactive Scripts -->
+    <!-- Scripts -->
     <script>
-        // 1. Three.js Interactive 3D Background Engine
+        // 1. Dark / Light Mode Toggle Functionality
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = themeToggleBtn.querySelector('i');
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.body.removeAttribute('data-theme');
+                themeIcon.className = 'fa-solid fa-moon';
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun';
+            }
+        });
+
+        // 2. Three.js Interactive 3D Background Engine
         const canvas = document.getElementById('webgl-bg');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -652,7 +753,6 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // Create 3D Geometric Floating Objects
         const geometry = new THREE.IcosahedronGeometry(1.2, 0);
         const material = new THREE.MeshNormalMaterial({ wireframe: true });
         const meshes = [];
@@ -670,38 +770,32 @@
 
         camera.position.z = 8;
 
-        // Mouse Movement Interaction
         let mouseX = 0, mouseY = 0;
         window.addEventListener('mousemove', (e) => {
             mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
             mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
         });
 
-        // Animation Loop
         function animate() {
             requestAnimationFrame(animate);
-
             meshes.forEach(mesh => {
                 mesh.rotation.x += 0.003;
                 mesh.rotation.y += 0.005;
             });
-
             camera.position.x += (mouseX - camera.position.x) * 0.05;
             camera.position.y += (-mouseY - camera.position.y) * 0.05;
             camera.lookAt(scene.position);
-
             renderer.render(scene, camera);
         }
         animate();
 
-        // Responsive Resizing
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // 2. 3D Tilt Effect on Mouse Hover
+        // 3. 3D Tilt Effect on Mouse Hover
         document.querySelectorAll('.tilt-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -715,14 +809,11 @@
             });
         });
 
-        // 3. GSAP & ScrollTrigger Animations
+        // 4. GSAP & ScrollTrigger Animations
         gsap.registerPlugin(ScrollTrigger);
-
-        // Entrance animation for Hero
         gsap.from('.gsap-hero-text', { opacity: 0, y: 50, duration: 1.2, ease: 'power3.out' });
-        gsap.from('.gsap-hero-img', { opacity: 0, scale: 0.9, duration: 1.2, delay: 0.3, ease: 'power3.out' });
+        gsap.from('.gsap-hero-img', { opacity: 0, y: 80, duration: 1.4, delay: 0.2, ease: 'power3.out' });
 
-        // Scroll reveal for all main sections
         gsap.utils.toArray('.gsap-reveal').forEach(section => {
             gsap.from(section, {
                 scrollTrigger: {
@@ -737,7 +828,7 @@
             });
         });
 
-        // 4. Interactive FAQ Accordion
+        // 5. FAQ Accordion
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', () => {
                 item.classList.toggle('active');
