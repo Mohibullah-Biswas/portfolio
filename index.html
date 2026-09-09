@@ -238,6 +238,7 @@
             max-width: 480px;
         }
 
+        /* Modern Hero Image Wrapper with Glow and Filters */
         .hero-cutout-wrapper {
             position: absolute;
             right: -20px;
@@ -254,10 +255,20 @@
         .hero-cutout-img {
             width: 100%;
             height: auto;
-            max-height: 90vh;
+            max-height: 85vh;
             object-fit: contain;
-            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
             pointer-events: auto;
+            /* Modern B&W Cyberpunk Filter Setup */
+            filter: grayscale(100%) contrast(115%) brightness(95%);
+            drop-shadow: 0 0 35px rgba(37, 99, 235, 0.35);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+            transition: filter 0.4s ease, drop-shadow 0.4s ease;
+        }
+
+        .hero-cutout-img:hover {
+            filter: grayscale(0%) contrast(105%) brightness(100%);
+            drop-shadow: 0 0 50px rgba(37, 99, 235, 0.6);
         }
 
         .hero-stats-grid {
@@ -331,7 +342,7 @@
             letter-spacing: -1px;
         }
 
-        /* --- ROADMAP TIMELINE SECTION STYLES --- */
+        /* Roadmap Timeline */
         .roadmap-timeline {
             position: relative;
             max-width: 900px;
@@ -420,7 +431,7 @@
             line-height: 1.5;
         }
 
-        /* Other Cards & Components */
+        /* Cards & Components */
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -605,7 +616,6 @@
             .nav-links { display: none; }
             .service-row { grid-template-columns: 1fr; gap: 8px; }
             
-            /* Responsive Roadmap Timeline */
             .roadmap-timeline::before { left: 20px; }
             .roadmap-item { width: 100%; padding-left: 50px; padding-right: 0; text-align: left !important; }
             .roadmap-item:nth-child(even) { left: 0; }
@@ -654,31 +664,36 @@
                 <!-- Hero Stats Grid -->
                 <div class="hero-stats-grid">
                     <div class="hero-stat-card tilt-card">
-                        <div class="hero-stat-number">3+ Years</div>
-                        <div class="hero-stat-label">Industry Experience</div>
+                        <div class="hero-stat-number">5+ Years</div>
+                        <div class="hero-stat-label">Digital Journey</div>
                     </div>
                     <div class="hero-stat-card tilt-card">
-                        <div class="hero-stat-number">150+</div>
-                        <div class="hero-stat-label">Projects Delivered</div>
+                        <div class="hero-stat-number">100K+</div>
+                        <div class="hero-stat-label">TikTok Views</div>
                     </div>
                     <div class="hero-stat-card tilt-card">
-                        <div class="hero-stat-number">4+</div>
-                        <div class="hero-stat-label">Global Partners</div>
+                        <div class="hero-stat-number">80K+</div>
+                        <div class="hero-stat-label">YouTube Subs Grown</div>
                     </div>
                     <div class="hero-stat-card tilt-card">
-                        <div class="hero-stat-number">99%</div>
-                        <div class="hero-stat-label">Client Satisfaction</div>
+                        <div class="hero-stat-number">30K+</div>
+                        <div class="hero-stat-label">Community Size</div>
                     </div>
                 </div>
             </div>
 
+            <!-- Modern Hero Image Section -->
             <div class="hero-cutout-wrapper gsap-hero-img">
-                <img src="Profile.png" alt="Md Mohibullah Biswas Cutout Portrait" class="hero-cutout-img tilt-card">
+                <!-- Background Neon Glow Sphere -->
+                <div style="position: absolute; width: 320px; height: 320px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-indigo)); filter: blur(90px); opacity: 0.35; border-radius: 50%; z-index: -1;"></div>
+                
+                <!-- Your GitHub Uploaded Photo Link -->
+                <img src="https://github.com/user-attachments/assets/530ef3e-bab3-4a69-9a2e-8b1e48162278" alt="Md Mohibullah Biswas Cutout Portrait" class="hero-cutout-img tilt-card">
             </div>
         </div>
     </section>
 
-    <!-- NEW SECTION: 2021-2026 Interactive Roadmap -->
+    <!-- 2021-2026 Interactive Roadmap Section -->
     <section class="section-container gsap-reveal" id="roadmap">
         <span class="section-tag">Career Journey</span>
         <h2 class="section-heading">Milestone Roadmap (2021 - 2026)</h2>
@@ -757,12 +772,12 @@
     <!-- Global Partners -->
     <section class="section-container gsap-reveal" id="partners">
         <span class="section-tag">Global Network</span>
-        <h2 class="section-heading">4+ Global Partners Worked With</h2>
+        <h2 class="section-heading">Partners Worked With</h2>
         <div class="logo-grid">
-            <div class="partner-box tilt-card"><i class="fa-solid fa-trophy"></i> Efootball Council BD</div>
+            <div class="partner-box tilt-card"><i class="fa-solid fa-trophy"></i> eFootball Council BD</div>
             <div class="partner-box tilt-card"><i class="fa-solid fa-gamepad"></i> ZIM FF</div>
             <div class="partner-box tilt-card"><i class="fa-solid fa-graduation-cap"></i> Sohoj English Academy</div>
-            <div class="partner-box tilt-card"><i class="fa-solid fa-shield-halved"></i> River Bolesswar eFC</div>
+            <div class="partner-box tilt-card"><i class="fa-solid fa-youtube"></i> Imran Hossain (Australia)</div>
         </div>
     </section>
 
@@ -818,14 +833,14 @@
             <div class="testimonial-card tilt-card">
                 <p>"Mohibullah's video editing turned our content into high-retention masterpieces. Exceptional attention to visual pacing and sound design!"</p>
                 <div class="client-info">
-                    <h5>Md Imran Hossain</h5>
+                    <h5 style="margin-top: 10px; color: var(--accent-primary);">Md Imran Hossain</h5>
                     <span>Media Client (Australia)</span>
                 </div>
             </div>
             <div class="testimonial-card tilt-card">
                 <p>"Top-tier esports graphics and video assets. Reliable, punctual, and delivers 100% client satisfaction every time."</p>
                 <div class="client-info">
-                    <h5>Efootball Council BD</h5>
+                    <h5 style="margin-top: 10px; color: var(--accent-primary);">eFootball Council BD</h5>
                     <span>Esports Partner</span>
                 </div>
             </div>
