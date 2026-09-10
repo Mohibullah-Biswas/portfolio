@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md Mohibullah Biswas | Cyber 3D Portfolio</title>
+    <title>Md Mohibullah Biswas | Dynamic 3D Portfolio</title>
     <!-- Google Fonts & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,18 +17,27 @@
 
     <style>
         :root {
-            --bg-color: #080c14;
-            --card-bg: rgba(15, 23, 42, 0.75);
-            --card-border: rgba(51, 65, 85, 0.8);
-            --accent-primary: #3b82f6;
-            --accent-indigo: #6366f1;
-            --accent-cyan: #06b6d4;
+            --bg-color: #090d16;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --accent-primary: #ffffff;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --shadow-lg: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
             --header-bg: rgba(15, 23, 42, 0.85);
-            --input-bg: #1e293b;
-            --timeline-line: #334155;
+            --input-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(226, 232, 240, 0.8);
+            --accent-primary: #0f172a;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --shadow-lg: 0 20px 30px -10px rgba(0, 0, 0, 0.08);
+            --header-bg: rgba(255, 255, 255, 0.8);
+            --input-bg: #f1f5f9;
         }
 
         * {
@@ -43,6 +52,7 @@
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         #webgl-bg {
@@ -72,6 +82,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         .logo {
@@ -81,7 +92,7 @@
             color: var(--text-main);
         }
 
-        .logo span { color: var(--accent-cyan); }
+        .logo span { color: var(--accent-primary); }
 
         .nav-links {
             display: flex;
@@ -97,24 +108,49 @@
             transition: color 0.3s ease;
         }
 
-        .nav-link:hover { color: var(--accent-cyan); }
+        .nav-link:hover { color: var(--text-main); }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--accent-primary);
+        }
 
         .btn-header {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-indigo));
-            color: #ffffff;
+            background: var(--text-main);
+            color: var(--bg-color);
             padding: 10px 22px;
             border-radius: 50px;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             text-decoration: none;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
             display: inline-block;
         }
 
         .btn-header:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
         }
 
         /* Hero Section */
@@ -132,9 +168,40 @@
             max-width: 1200px;
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.1fr 0.9fr;
             align-items: center;
             gap: 40px;
+        }
+
+        .giant-bg-text {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(4rem, 15vw, 13rem);
+            font-weight: 800;
+            color: var(--text-main);
+            opacity: 0.04;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 1;
+            letter-spacing: -4px;
+            text-transform: uppercase;
+        }
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--card-border);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 20px;
         }
 
         .hero-title {
@@ -154,44 +221,41 @@
             max-width: 480px;
         }
 
-        /* High-Tech Ultra Modern Hero Photo Card Frame */
-        .hero-cyber-frame {
+        /* Black and White Glassmorphic Hero Card */
+        .hero-bw-frame {
             position: relative;
             width: 100%;
-            max-width: 440px;
+            max-width: 420px;
             height: 520px;
             margin: 0 auto;
             border-radius: 28px;
-            background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.9));
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            box-shadow: 0 0 50px rgba(6, 182, 212, 0.15), inset 0 0 20px rgba(59, 130, 246, 0.1);
-            backdrop-filter: blur(16px);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.6));
+            border: 1px solid var(--card-border);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 0 1px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(20px);
             overflow: hidden;
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s ease;
         }
 
-        .hero-cyber-frame:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 60px rgba(6, 182, 212, 0.35);
+        .hero-bw-frame:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 30px 70px rgba(255, 255, 255, 0.1);
         }
 
-        /* Inner Holographic Glow Background */
-        .hero-cyber-frame::before {
+        .hero-bw-frame::before {
             content: '';
             position: absolute;
-            top: -20%;
-            left: -20%;
-            width: 140%;
-            height: 140%;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.25) 0%, rgba(59, 130, 246, 0.1) 40%, transparent 70%);
-            z-index: 1;
+            top: -30%;
+            left: -30%;
+            width: 160%;
+            height: 160%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 65%);
             pointer-events: none;
         }
 
-        /* Black and White Cutout Photo with Cyber Mask */
         .hero-cutout-img {
             position: relative;
             z-index: 2;
@@ -199,29 +263,26 @@
             height: 100%;
             object-fit: cover;
             object-position: top center;
-            filter: grayscale(100%) contrast(120%) brightness(95%);
-            mix-blend-mode: luminosity;
-            transition: all 0.5s ease;
+            filter: grayscale(100%) contrast(115%) brightness(95%);
+            transition: filter 0.4s ease;
         }
 
-        .hero-cyber-frame:hover .hero-cutout-img {
+        .hero-bw-frame:hover .hero-cutout-img {
             filter: grayscale(0%) contrast(105%) brightness(100%);
-            mix-blend-mode: normal;
         }
 
-        /* Floating Hologram Badges on Photo */
         .floating-tech-badge {
             position: absolute;
             z-index: 3;
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid var(--accent-cyan);
+            background: rgba(10, 15, 25, 0.85);
+            border: 1px solid var(--card-border);
             padding: 8px 16px;
             border-radius: 50px;
             font-size: 0.78rem;
             font-weight: 700;
-            color: var(--accent-cyan);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            color: var(--text-main);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -233,12 +294,11 @@
         .pulse-dot {
             width: 8px;
             height: 8px;
-            background-color: #10b981;
+            background-color: #22c55e;
             border-radius: 50%;
-            box-shadow: 0 0 10px #10b981;
+            box-shadow: 0 0 10px #22c55e;
         }
 
-        /* Hero Stats Grid */
         .hero-stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -257,7 +317,7 @@
         }
 
         .hero-stat-card:hover {
-            border-color: var(--accent-cyan);
+            border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-3px);
         }
 
@@ -265,7 +325,7 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.6rem;
             font-weight: 700;
-            color: var(--accent-cyan);
+            color: var(--text-main);
         }
 
         .hero-stat-label {
@@ -287,7 +347,7 @@
         }
 
         .section-tag {
-            color: var(--accent-cyan);
+            color: var(--text-muted);
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.85rem;
             font-weight: 700;
@@ -305,74 +365,121 @@
             letter-spacing: -1px;
         }
 
-        /* Roadmap Timeline */
-        .roadmap-timeline {
+        /* ----------------------------------------------------
+           3D Curved Road Style Roadmap Timeline
+        ---------------------------------------------------- */
+        .roadmap-road-wrapper {
             position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px 0;
+            max-width: 950px;
+            margin: 40px auto;
+            padding: 40px 0;
+            perspective: 1200px;
         }
 
-        .roadmap-timeline::before {
-            content: '';
+        /* Curved Road Track Line */
+        .roadmap-road-path {
             position: absolute;
             top: 0;
             bottom: 0;
             left: 50%;
-            width: 3px;
-            background: var(--timeline-line);
+            width: 8px;
+            background: linear-gradient(180deg, 
+                rgba(255,255,255,0.05) 0%, 
+                rgba(255,255,255,0.4) 50%, 
+                rgba(255,255,255,0.05) 100%);
             transform: translateX(-50%);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255,255,255,0.2);
         }
 
-        .roadmap-item {
-            position: relative;
-            width: 50%;
-            padding: 20px 40px;
-            box-sizing: border-box;
-        }
-
-        .roadmap-item:nth-child(odd) { left: 0; text-align: right; }
-        .roadmap-item:nth-child(even) { left: 50%; text-align: left; }
-
-        .roadmap-dot {
+        /* Road Dash Stripes */
+        .roadmap-road-path::after {
+            content: '';
             position: absolute;
-            top: 30px;
-            width: 18px;
-            height: 18px;
-            background: var(--accent-cyan);
-            border: 4px solid var(--bg-color);
-            border-radius: 50%;
-            z-index: 2;
-            box-shadow: 0 0 12px var(--accent-cyan);
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: repeating-linear-gradient(180deg, #fff 0px, #fff 15px, transparent 15px, transparent 30px);
+            opacity: 0.6;
         }
 
-        .roadmap-item:nth-child(odd) .roadmap-dot { right: -9px; }
-        .roadmap-item:nth-child(even) .roadmap-dot { left: -9px; }
+        .road-item {
+            position: relative;
+            width: 48%;
+            margin-bottom: 45px;
+        }
 
-        .roadmap-content {
+        .road-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .road-item:nth-child(even) {
+            left: 52%;
+            text-align: left;
+        }
+
+        /* 3D Milestone Node Pin */
+        .road-node {
+            position: absolute;
+            top: 25px;
+            width: 22px;
+            height: 22px;
+            background: var(--bg-color);
+            border: 3px solid var(--text-main);
+            border-radius: 50%;
+            z-index: 5;
+            box-shadow: 0 0 15px var(--text-main);
+        }
+
+        .road-item:nth-child(odd) .road-node { right: -21px; }
+        .road-item:nth-child(even) .road-node { left: -21px; }
+
+        .road-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 24px;
-            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 26px;
+            backdrop-filter: blur(16px);
             box-shadow: var(--shadow-lg);
-            display: inline-block;
-            width: 100%;
+            position: relative;
+            transition: all 0.3s ease;
         }
 
-        .roadmap-year {
+        .road-card:hover {
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .road-year {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.1rem;
             font-weight: 800;
-            color: var(--accent-cyan);
+            color: var(--text-main);
             margin-bottom: 6px;
             display: inline-block;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
         }
 
-        .roadmap-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
-        .roadmap-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+        .road-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
 
-        /* Grid Services & Cards */
+        .road-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Grid Layouts & Components */
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -389,11 +496,124 @@
         }
 
         .glass-card:hover {
-            border-color: var(--accent-cyan);
+            border-color: rgba(255,255,255,0.3);
             box-shadow: var(--shadow-lg);
         }
 
-        .card-icon { font-size: 1.8rem; color: var(--accent-cyan); margin-bottom: 18px; }
+        .card-icon {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 18px;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .partner-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 22px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+
+        .partner-box:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .statement-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 50px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .services-stack { display: flex; flex-direction: column; gap: 16px; }
+
+        .service-row {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 28px 32px;
+            border-radius: 16px;
+            display: grid;
+            grid-template-columns: 80px 1fr 2fr;
+            align-items: center;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .service-row:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateX(6px);
+        }
+
+        .service-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .portfolio-card {
+            width: 100%;
+            height: 500px;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .portfolio-card iframe { width: 100%; height: 100%; border: 0; }
+
+        .testimonial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 32px;
+            backdrop-filter: blur(8px);
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            padding: 20px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question { display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .faq-item.active .faq-answer { max-height: 150px; margin-top: 12px; }
 
         .contact-wrapper {
             display: grid;
@@ -404,6 +624,7 @@
             border-radius: 24px;
             padding: 48px;
             backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-lg);
         }
 
         .form-input {
@@ -417,20 +638,29 @@
             margin-bottom: 16px;
         }
 
-        .form-input:focus { border-color: var(--accent-cyan); }
+        .form-input:focus { border-color: rgba(255,255,255,0.4); }
 
-        footer { text-align: center; padding: 36px; border-top: 1px solid var(--card-border); color: var(--text-muted); font-size: 0.85rem; }
+        footer {
+            text-align: center;
+            padding: 36px;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
 
         @media (max-width: 992px) {
             .hero-container { grid-template-columns: 1fr; text-align: center; }
             .hero-subtitle { margin: 0 auto 28px; }
             .hero-stats-grid { margin: 30px auto 0; }
+            .giant-bg-text { display: none; }
             .nav-links { display: none; }
-            .contact-wrapper { grid-template-columns: 1fr; }
-            .roadmap-timeline::before { left: 20px; }
-            .roadmap-item { width: 100%; padding-left: 50px; padding-right: 0; text-align: left !important; }
-            .roadmap-item:nth-child(even) { left: 0; }
-            .roadmap-dot { left: 11px !important; }
+            .statement-box, .contact-wrapper, .testimonial-grid { grid-template-columns: 1fr; }
+            .service-row { grid-template-columns: 1fr; gap: 8px; }
+
+            .roadmap-road-path { left: 20px; }
+            .road-item { width: 100%; padding-left: 50px; padding-right: 0; text-align: left !important; }
+            .road-item:nth-child(even) { left: 0; }
+            .road-node { left: 9px !important; }
         }
     </style>
 </head>
@@ -445,20 +675,29 @@
             <li><a href="#about" class="nav-link">About</a></li>
             <li><a href="#roadmap" class="nav-link">Roadmap</a></li>
             <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+            <li><a href="#partners" class="nav-link">Partners</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
-        <a href="#contact" class="btn-header">Let's Talk</a>
+        <div class="header-controls">
+            <button class="theme-toggle-btn" id="themeToggle" title="Toggle Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <a href="#contact" class="btn-header">Let's Talk</a>
+        </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="about">
+        <div class="giant-bg-text">MOHIBULLAH</div>
+
         <div class="hero-container">
             <div class="hero-text-content gsap-hero-text">
-                <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 50px; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); font-size: 0.8rem; font-weight: 600; color: var(--accent-cyan); margin-bottom: 20px;">
+                <div class="badge-pill">
                     <i class="fa-solid fa-bolt"></i> Digital Creator & Strategist
                 </div>
                 <h1 class="hero-title">Crafting Visual Stories That Engage</h1>
-                <p class="hero-subtitle">High-retention video post-production, motion graphics, and click-driven visual branding engineered for digital creators.</p>
+                <p class="hero-subtitle">High-retention video post-production, motion graphics, and click-driven visual branding engineered for digital creators and brands.</p>
                 
                 <a href="#contact" class="btn-header" style="padding: 12px 28px;">Start a Project</a>
 
@@ -473,7 +712,7 @@
                     </div>
                     <div class="hero-stat-card tilt-card">
                         <div class="hero-stat-number">80K+</div>
-                        <div class="hero-stat-label">YouTube Subs</div>
+                        <div class="hero-stat-label">YouTube Subs Grown</div>
                     </div>
                     <div class="hero-stat-card tilt-card">
                         <div class="hero-stat-number">30K+</div>
@@ -482,8 +721,8 @@
                 </div>
             </div>
 
-            <!-- Ultra Modern Cyber Card Frame Photo Section -->
-            <div class="hero-cyber-frame tilt-card gsap-hero-img">
+            <!-- Black & White Premium Card Frame -->
+            <div class="hero-bw-frame tilt-card gsap-hero-img">
                 <div class="floating-tech-badge badge-top-left">
                     <div class="pulse-dot"></div> Available for Work
                 </div>
@@ -495,49 +734,54 @@
         </div>
     </section>
 
-    <!-- Roadmap Timeline -->
+    <!-- 3D Road Style Roadmap Section -->
     <section class="section-container gsap-reveal" id="roadmap">
         <span class="section-tag">Career Journey</span>
-        <h2 class="section-heading">Milestone Roadmap (2021 - 2026)</h2>
+        <h2 class="section-heading">Interactive 3D Milestone Track</h2>
 
-        <div class="roadmap-timeline">
-            <div class="roadmap-item">
-                <div class="roadmap-dot"></div>
-                <div class="roadmap-content tilt-card">
-                    <span class="roadmap-year">2021 – 2022</span>
-                    <h3 class="roadmap-title">TikTok Content Creation</h3>
-                    <p class="roadmap-desc">Generated 100,000+ views on TikTok through high-retention short-form video editing and viral media strategies.</p>
+        <div class="roadmap-road-wrapper">
+            <div class="roadmap-road-path"></div>
+
+            <div class="road-item">
+                <div class="road-node"></div>
+                <div class="road-card tilt-card">
+                    <span class="road-year">2021 – 2022</span>
+                    <h3 class="road-title">TikTok Content Creation</h3>
+                    <p class="road-desc">Generated 100,000+ views on TikTok through high-retention short-form video editing and viral media strategies.</p>
                 </div>
             </div>
-            <div class="roadmap-item">
-                <div class="roadmap-dot"></div>
-                <div class="roadmap-content tilt-card">
-                    <span class="roadmap-year">2023 – 2025</span>
-                    <h3 class="roadmap-title">ZIM FF YouTube Growth</h3>
-                    <p class="roadmap-desc">Engineered the YouTube channel "ZIM FF" from 0 to 80,000+ Subscribers with high-impact edits and thumbnail branding.</p>
+
+            <div class="road-item">
+                <div class="road-node"></div>
+                <div class="road-card tilt-card">
+                    <span class="road-year">2023 – 2025</span>
+                    <h3 class="road-title">ZIM FF YouTube Growth</h3>
+                    <p class="road-desc">Engineered the YouTube channel "ZIM FF" from 0 to 80,000+ Subscribers with high-impact edits and thumbnail branding.</p>
                 </div>
             </div>
-            <div class="roadmap-item">
-                <div class="roadmap-dot"></div>
-                <div class="roadmap-content tilt-card">
-                    <span class="roadmap-year">2025 – 2026</span>
-                    <h3 class="roadmap-title">eFootball Council BD</h3>
-                    <p class="roadmap-desc">Managed eSports media & branding for an active gaming community of 30,000+ players across Bangladesh.</p>
+
+            <div class="road-item">
+                <div class="road-node"></div>
+                <div class="road-card tilt-card">
+                    <span class="road-year">2025 – 2026</span>
+                    <h3 class="road-title">eFootball Council BD</h3>
+                    <p class="road-desc">Managed eSports media & branding for an active gaming community of 30,000+ players across Bangladesh.</p>
                 </div>
             </div>
-            <div class="roadmap-item">
-                <div class="roadmap-dot"></div>
-                <div class="roadmap-content tilt-card">
-                    <span class="roadmap-year">2026</span>
-                    <h3 class="roadmap-title">Global Creator Partnerships</h3>
-                    <p class="roadmap-desc">Crafting promotional assets for Sohoj English Academy and post-production for Australian creator channels.</p>
+
+            <div class="road-item">
+                <div class="road-node"></div>
+                <div class="road-card tilt-card">
+                    <span class="road-year">2026 (Recent)</span>
+                    <h3 class="road-title">Sohoj English & Global Partnerships</h3>
+                    <p class="road-desc">Crafting promotional assets for Sohoj English Academy and post-production editing for Australian creator channels.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Capabilities -->
-    <section class="section-container gsap-reveal" id="services">
+    <!-- Capabilities Section -->
+    <section class="section-container gsap-reveal">
         <span class="section-tag">Capabilities</span>
         <h2 class="section-heading">High-Impact Digital Solutions</h2>
         <div class="grid-4">
@@ -564,13 +808,105 @@
         </div>
     </section>
 
+    <!-- Global Partners -->
+    <section class="section-container gsap-reveal" id="partners">
+        <span class="section-tag">Global Network</span>
+        <h2 class="section-heading">Partners Worked With</h2>
+        <div class="logo-grid">
+            <div class="partner-box tilt-card"><i class="fa-solid fa-trophy"></i> eFootball Council BD</div>
+            <div class="partner-box tilt-card"><i class="fa-solid fa-gamepad"></i> ZIM FF</div>
+            <div class="partner-box tilt-card"><i class="fa-solid fa-graduation-cap"></i> Sohoj English Academy</div>
+            <div class="partner-box tilt-card"><i class="fa-solid fa-youtube"></i> Imran Hossain (Australia)</div>
+        </div>
+    </section>
+
+    <!-- Statement Section -->
+    <section class="section-container gsap-reveal">
+        <div class="statement-box tilt-card">
+            <div class="statement-left">
+                <h2>CRAFTING HIGH-RETENTION MEDIA & INTUITIVE DESIGNS</h2>
+            </div>
+            <div class="statement-right">
+                <p>I convert raw video assets into engaging narrative stories. By focusing on retention metrics, aesthetic visual thumbnails, and clean automated systems, I help creators and brands stand out in crowded feeds.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section-container gsap-reveal" id="services">
+        <span class="section-tag">Services</span>
+        <h2 class="section-heading">What I Deliver</h2>
+        <div class="services-stack">
+            <div class="service-row">
+                <span class="service-num">01</span>
+                <h3>Video Post-Production</h3>
+                <p>YouTube long-form, Shorts, esports edits, motion graphics, and audio engineering.</p>
+            </div>
+            <div class="service-row">
+                <span class="service-num">02</span>
+                <h3>Thumbnail & Graphic Design</h3>
+                <p>Click-driven thumbnails, social media branding kits, and esports banners.</p>
+            </div>
+            <div class="service-row">
+                <span class="service-num">03</span>
+                <h3>Automation & Tech Support</h3>
+                <p>Python script integrations to optimize media processing workflows.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Showcase -->
+    <section class="section-container gsap-reveal" id="portfolio">
+        <span class="section-tag">Portfolio</span>
+        <h2 class="section-heading">Featured Showcase</h2>
+        <div class="portfolio-card tilt-card">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Featured Work" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section-container gsap-reveal">
+        <span class="section-tag">Client Satisfaction</span>
+        <h2 class="section-heading">Client Feedback</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card tilt-card">
+                <p>"Mohibullah's video editing turned our content into high-retention masterpieces. Exceptional attention to visual pacing and sound design!"</p>
+                <div class="client-info">
+                    <h5 style="margin-top: 10px; color: var(--text-main);">Md Imran Hossain</h5>
+                    <span>Media Client (Australia)</span>
+                </div>
+            </div>
+            <div class="testimonial-card tilt-card">
+                <p>"Top-tier esports graphics and video assets. Reliable, punctual, and delivers 100% client satisfaction every time."</p>
+                <div class="client-info">
+                    <h5 style="margin-top: 10px; color: var(--text-main);">eFootball Council BD</h5>
+                    <span>Esports Partner</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-container gsap-reveal" id="faq">
+        <span class="section-tag">FAQ</span>
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-question">What software do you use for post-production? <i class="fa-solid fa-plus"></i></div>
+            <div class="faq-answer">I work with Premiere Pro, After Effects, Photoshop, and Lightroom to deliver industry-standard high-definition media.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What is your typical project turnaround time? <i class="fa-solid fa-plus"></i></div>
+            <div class="faq-answer">Short-form videos take 24-48 hours. Long-form videos and full visual kits usually take 3 to 5 business days depending on complexity.</div>
+        </div>
+    </section>
+
     <!-- Contact Form -->
     <section class="section-container gsap-reveal" id="contact">
         <div class="contact-wrapper tilt-card">
             <div>
                 <span class="section-tag">Connect</span>
                 <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 16px;">Let's Build Something Great</h2>
-                <p style="color: var(--text-muted); line-height: 1.6;">Have a project in mind or need high-end video editing? Send a message to get started.</p>
+                <p style="color: var(--text-muted); line-height: 1.6;">Have a project in mind or need high-end video editing? Send a message to get started immediately.</p>
             </div>
             <form>
                 <input type="text" placeholder="Your Name" class="form-input" required>
@@ -587,7 +923,22 @@
 
     <!-- Scripts -->
     <script>
-        // Three.js Interactive 3D Background Engine
+        // Theme Toggle Functionality
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = themeToggleBtn.querySelector('i');
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.body.removeAttribute('data-theme');
+                themeIcon.className = 'fa-solid fa-moon';
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fa-solid fa-sun';
+            }
+        });
+
+        // Three.js Interactive 3D Canvas Background
         const canvas = document.getElementById('webgl-bg');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -600,7 +951,7 @@
         const material = new THREE.MeshNormalMaterial({ wireframe: true });
         const meshes = [];
 
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 22; i++) {
             const mesh = new THREE.Mesh(geometry, material);
             mesh.position.x = (Math.random() - 0.5) * 20;
             mesh.position.y = (Math.random() - 0.5) * 20;
@@ -636,7 +987,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // 3D Tilt Effect on Cards
+        // 3D Tilt Effect
         document.querySelectorAll('.tilt-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -662,6 +1013,19 @@
                 y: 40,
                 duration: 1,
                 ease: 'power3.out'
+            });
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+                const icon = item.querySelector('.faq-question i');
+                if (item.classList.contains('active')) {
+                    icon.className = 'fa-solid fa-minus';
+                } else {
+                    icon.className = 'fa-solid fa-plus';
+                }
             });
         });
     </script>
